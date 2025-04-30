@@ -1,0 +1,58 @@
+@hostname = localhost
+@port = 4000
+@host = {{hostname}}:{{port}}
+@url = http://{{host}}/api/
+
+@token = {{createToken.response.body.$}}
+### Get all 
+
+GET {{url}}vacations
+
+### Delete
+
+DELETE  {{url}}vacations
+Authorization: Bearer {{token}}
+
+### Login
+# @name createToken
+POST {{url}}login
+Content-Type: application/json
+
+{
+    "email": "bart@gmail.com",
+    "password": "1234"
+}
+
+### post vacation
+POST {{url}}vacations
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="destination"
+
+Petah-Tikva
+--MyBoundary
+Content-Disposition: form-data; name="description"
+
+Meh City
+--MyBoundary
+Content-Disposition: form-data; name="startDate"
+
+2020-01-01
+--MyBoundary
+Content-Disposition: form-data; name="endDate"
+
+2020-01-02
+--MyBoundary
+Content-Disposition: form-data; name="price"
+
+100
+--MyBoundary
+Content-Disposition: form-data; name="image"; filename="pt.jpg"
+Content-Type: image/jpeg
+
+< ./src/1-assets/images/pt.jpg
+--MyBoundary--
+
+###
