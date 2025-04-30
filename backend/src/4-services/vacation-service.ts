@@ -35,8 +35,28 @@ class VacationService {
 
         const dbVacation = await this.getOneVacation(info.insertId);
         console.log(dbVacation);
-        
+
         return dbVacation;
+    }
+
+    public async updateVacation(vacation: VacationModel): Promise<VacationModel> {
+
+        // vacation.validate();
+
+        const imageName = vacation.image ? await fileSaver.add(vacation.image) : null;
+
+
+        const sql = "UPDATE vacations SET destination = ?, description = ?, startDate = ?, endDate = ?, price = ?, imageName = ? WHERE id = ?;";
+        const values = [vacation.destination, vacation.description, vacation.startDate, vacation.endDate, vacation.price, imageName, vacation.id];
+
+        const info = await dal.execute(sql, values) as OkPacketParams;
+
+        if (info.affectedRows === 0) throw new ClientError(StatusCode.NotFound, `id ${vacation.id} not exist`);
+
+        const dbVacation = await this.getOneVacation(vacation.id);
+
+        return dbVacation
+
     }
 
     public async deleteVacation(id: number): Promise<void> {
@@ -48,18 +68,17 @@ class VacationService {
 
         const info = await dal.execute(sql, values) as OkPacketParams;
 
-        if(info.affectedRows === 0) throw new ClientError(StatusCode.NotFound, `id ${id} not found`);
+        if (info.affectedRows === 0) throw new ClientError(StatusCode.NotFound, `id ${id} not found`);
 
         await fileSaver.delete(oldFileName);
     }
-
 
     private async getImageName(id: number): Promise<string> {
         const sql = "select imageName from vacations where id = ?";
         const values = [id];
         const vacations = await dal.execute(sql, values);
         const vacation = vacations[0];
-        if(!vacation) return null;
+        if (!vacation) return null;
         return vacation.imageName
     }
 

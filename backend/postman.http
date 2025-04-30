@@ -5,10 +5,13 @@
 
 @token = {{createToken.response.body.$}}
 ### Get all 
-
 GET {{url}}vacations
 
-### Delete
+
+### GET image 
+GET {{url}}vacations/images/e4910ad4-4d2d-48fc-a628-91ff07268e09.jpg
+
+### Delete 
 
 DELETE  {{url}}vacations
 Authorization: Bearer {{token}}
@@ -31,30 +34,70 @@ Content-Type: multipart/form-data; boundary=MyBoundary
 --MyBoundary
 Content-Disposition: form-data; name="destination"
 
-Petah-Tikva
+{{destination}}
 --MyBoundary
 Content-Disposition: form-data; name="description"
 
-Meh City
+{{description}}
 --MyBoundary
 Content-Disposition: form-data; name="startDate"
 
-2020-01-01
+{{startDate}}
 --MyBoundary
 Content-Disposition: form-data; name="endDate"
 
-2020-01-02
+{{endDate}}
 --MyBoundary
 Content-Disposition: form-data; name="price"
 
-100
+{{price}}
 --MyBoundary
-Content-Disposition: form-data; name="image"; filename="pt.jpg"
+Content-Disposition: form-data; name="image"; filename="{{imageName}}"
 Content-Type: image/jpeg
 
-< ./src/1-assets/images/pt.jpg
+< C:\Users\misha\Desktop\{{imageName}}
 --MyBoundary--
 
-### GET image 
+### update
 
-GET http://localhost:4000/api/vacations/images/fa7eb879-1a8a-4ee1-a482-eed0e4a1fc9e.jpg
+
+@destination = Queenstown, New Zealand
+@description = Adventure capital with bungee jumping, skiing, and stunning landscapes.
+@startDate = 2025-12-01
+@endDate = 2025-12-10
+@price = 4700.00
+@imageName = queenstown.jpg
+
+
+PUT {{url}}vacations/5
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="destination"
+
+{{destination}}
+--MyBoundary
+Content-Disposition: form-data; name="description"
+
+{{description}}
+--MyBoundary
+Content-Disposition: form-data; name="startDate"
+
+{{startDate}}
+--MyBoundary
+Content-Disposition: form-data; name="endDate"
+
+{{endDate}}
+--MyBoundary
+Content-Disposition: form-data; name="price"
+
+{{price}}
+--MyBoundary
+Content-Disposition: form-data; name="image"; filename="paris.jpg"
+Content-Type: image/jpeg
+
+< C:\Users\misha\Desktop\paris.jpg
+--MyBoundary--
+
+###

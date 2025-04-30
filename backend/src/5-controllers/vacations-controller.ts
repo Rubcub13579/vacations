@@ -4,6 +4,7 @@ import { StatusCode } from "../3-models/enums";
 import { VacationModel } from "../3-models/vacation-model";
 import { vacationService } from "../4-services/vacation-service";
 import { securityMiddleware } from "../6-middleware/security-middleware";
+import { log } from "console";
 
 
 class VacationsController {
@@ -14,6 +15,7 @@ class VacationsController {
         this.router.get("/api/vacations", this.getAllVacations);
         this.router.get("/api/vacations/:id", this.getOneVacation);
         this.router.post("/api/vacations", securityMiddleware.validate, securityMiddleware.validateAdmin, this.addVacation);
+        this.router.put("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.updateVacation);
         this.router.delete("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.deleteVacation);
         this.router.get("/api/vacations/images/:imageName", this.getImageFile);
     }
@@ -43,6 +45,17 @@ class VacationsController {
             const vacation = new VacationModel(req.body)
             const dbVacation = await vacationService.addVacation(vacation);
             res.status(StatusCode.Created).json(dbVacation);
+        }
+        catch (err: any) { next(err) }
+    }
+
+    private async updateVacation(req: Request, res: Response, next: NextFunction) {
+        try {
+            req.body.id = +req.params.id;
+            req.body.image = req.files?.image;
+            const vacation = new VacationModel(req.body);
+            const dbVacation = await vacationService.updateVacation(vacation);
+            res.status(StatusCode.Ok).json(dbVacation);
         }
         catch (err: any) { next(err) }
     }
