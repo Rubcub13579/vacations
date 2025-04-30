@@ -1,9 +1,9 @@
 import express, { NextFunction, Request, Response } from "express";
-import { vacationService } from "../4-services/vacation-service";
-import { VacationModel } from "../3-models/vacation-model";
+import { fileSaver } from "uploaded-file-saver";
 import { StatusCode } from "../3-models/enums";
+import { VacationModel } from "../3-models/vacation-model";
+import { vacationService } from "../4-services/vacation-service";
 import { securityMiddleware } from "../6-middleware/security-middleware";
-import fileUpload, { UploadedFile } from "express-fileupload";
 
 
 class VacationsController {
@@ -15,6 +15,7 @@ class VacationsController {
         this.router.get("/api/vacations/:id", this.getOneVacation);
         this.router.post("/api/vacations", securityMiddleware.validate, securityMiddleware.validateAdmin, this.addVacation);
         this.router.delete("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.deleteVacation);
+        this.router.get("/api/vacations/images/:imageName", this.getImageFile);
     }
 
 
@@ -52,6 +53,15 @@ class VacationsController {
             await vacationService.deleteVacation(id);
             res.status(StatusCode.NoContend).json()
 
+        }
+        catch (err: any) { next(err) }
+    }
+
+    private async getImageFile(req: Request, res: Response, next: NextFunction) {
+        try {
+            const imageName = req.params.imageName;
+            const imagePath = fileSaver.getFilePath(imageName);
+            res.sendFile(imagePath)
         }
         catch (err: any) { next(err) }
     }

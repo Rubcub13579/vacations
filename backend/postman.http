@@ -55,4 +55,6 @@ Content-Type: image/jpeg
 < ./src/1-assets/images/pt.jpg
 --MyBoundary--
 
-###
+### GET image 
+
+GET http://localhost:4000/api/vacations/images/fa7eb879-1a8a-4ee1-a482-eed0e4a1fc9e.jpg
