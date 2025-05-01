@@ -13,7 +13,7 @@ GET {{url}}vacations/images/e4910ad4-4d2d-48fc-a628-91ff07268e09.jpg
 
 ### Delete 
 
-DELETE  {{url}}vacations
+DELETE  {{url}}vacations/
 Authorization: Bearer {{token}}
 
 ### Login
@@ -66,7 +66,7 @@ Content-Type: image/jpeg
 @startDate = 2025-12-01
 @endDate = 2025-12-10
 @price = 4700.00
-@imageName = queenstown.jpg
+@imageName = DON'T FORGET.png
 
 
 PUT {{url}}vacations/5

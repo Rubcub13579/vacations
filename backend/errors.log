@@ -1,103 +1,41 @@
-Time: 30/04/2025, 17:31:31
+Time: 01/05/2025, 13:10:13
 Error: You are not logged in!
-Client IP: ::1
+Client IP: ::ffff:127.0.0.1
 
 --------------------------------------------------------
 
-Time: 30/04/2025, 17:32:12
-Error: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received type number (1234)
-Client IP: ::1
-Stack: TypeError: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received type number (1234)
-    at Hmac.update (node:internal/crypto/hash:115:11)
-    at Cyber.hash (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\2-utils\cyber.ts:49:76)
-    at UserService.<anonymous> (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\4-services\user-service.ts:32:38)
-    at Generator.next (<anonymous>)
-    at F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\4-services\user-service.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\4-services\user-service.ts:4:12)
-    at UserService.login (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\4-services\user-service.ts:31:16)
-    at F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\5-controllers\user-controller.ts:32:45
-    at Generator.next (<anonymous>)
+Time: 01/05/2025, 13:10:25
+Error: "image.encoding" must be one of [base64, binary]
+Client IP: ::ffff:127.0.0.1
 
 --------------------------------------------------------
 
-Time: 30/04/2025, 17:32:18
-Error: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received type number (1234)
-Client IP: ::1
-Stack: TypeError: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received type number (1234)
-    at Hmac.update (node:internal/crypto/hash:115:11)
-    at Cyber.hash (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\2-utils\cyber.ts:49:76)
-    at UserService.<anonymous> (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\4-services\user-service.ts:32:38)
-    at Generator.next (<anonymous>)
-    at F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\4-services\user-service.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\4-services\user-service.ts:4:12)
-    at UserService.login (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\4-services\user-service.ts:31:16)
-    at F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\src\5-controllers\user-controller.ts:32:45
-    at Generator.next (<anonymous>)
+Time: 01/05/2025, 13:11:20
+Error: "image.encoding" must be one of [base64, binary]
+Client IP: ::ffff:127.0.0.1
 
 --------------------------------------------------------
 
-Time: 30/04/2025, 17:32:50
-Error: You are not logged in!
-Client IP: ::1
+Time: 01/05/2025, 13:12:23
+Error: "image.encoding" must be one of [base64, binary]
+Client IP: ::ffff:127.0.0.1
 
 --------------------------------------------------------
 
-Time: 30/04/2025, 17:32:51
-Error: You are not logged in!
-Client IP: ::1
+Time: 01/05/2025, 13:13:44
+Error: "image.tempFilePath" is not allowed
+Client IP: ::ffff:127.0.0.1
 
 --------------------------------------------------------
 
-Time: 30/04/2025, 17:33:43
-Error: You are not admin!
-Client IP: ::1
+Time: 01/05/2025, 13:14:02
+Error: "image.encoding" is not allowed
+Client IP: ::ffff:127.0.0.1
 
 --------------------------------------------------------
 
-Time: 30/04/2025, 17:33:55
-Error: Column 'destination' cannot be null
-Client IP: ::1
-Stack: Error: Column 'destination' cannot be null
-    at Packet.asError (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\packets\packet.js:740:17)
-    at Query.execute (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\commands\command.js:29:26)
-    at PoolConnection.handlePacket (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\base\connection.js:475:34)
-    at PacketParser.onPacket (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\base\connection.js:93:12)
-    at PacketParser.executeStart (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\packet_parser.js:75:16)
-    at Socket.<anonymous> (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\base\connection.js:100:25)
-    at Socket.emit (node:events:524:28)
-    at Socket.emit (node:domain:489:12)
-    at addChunk (node:internal/streams/readable:561:12)
-    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
-
---------------------------------------------------------
-
-Time: 30/04/2025, 17:38:51
-Error: Duplicate entry 'homer@gmail.com' for key 'users.email_UNIQUE'
-Client IP: ::1
-Stack: Error: Duplicate entry 'homer@gmail.com' for key 'users.email_UNIQUE'
-    at Packet.asError (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\packets\packet.js:740:17)
-    at Query.execute (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\commands\command.js:29:26)
-    at PoolConnection.handlePacket (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\base\connection.js:475:34)
-    at PacketParser.onPacket (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\base\connection.js:93:12)
-    at PacketParser.executeStart (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\packet_parser.js:75:16)
-    at Socket.<anonymous> (F:\John bryce\MY PROJECTS\NEED TO BE FINISH\Vacation(final_project)\Vacations\backend\node_modules\mysql2\lib\base\connection.js:100:25)
-    at Socket.emit (node:events:524:28)
-    at Socket.emit (node:domain:489:12)
-    at addChunk (node:internal/streams/readable:561:12)
-    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
-
---------------------------------------------------------
-
-Time: 30/04/2025, 17:38:59
-Error: You are not admin!
-Client IP: ::1
-
---------------------------------------------------------
-
-Time: 30/04/2025, 17:39:47
-Error: You are not logged in!
+Time: 01/05/2025, 13:14:46
+Error: "imageUrl" is not allowed
 Client IP: ::ffff:127.0.0.1
 
 --------------------------------------------------------

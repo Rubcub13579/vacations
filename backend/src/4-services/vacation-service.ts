@@ -24,7 +24,7 @@ class VacationService {
 
     public async addVacation(vacation: VacationModel): Promise<VacationModel> {
 
-        // vacation.validate();
+        vacation.validate();
 
         const imageName = vacation.image ? await fileSaver.add(vacation.image) : null;
 
@@ -41,7 +41,7 @@ class VacationService {
 
     public async updateVacation(vacation: VacationModel): Promise<VacationModel> {
 
-        // vacation.validate();
+        vacation.validate();
 
         const imageName = vacation.image ? await fileSaver.add(vacation.image) : null;
 

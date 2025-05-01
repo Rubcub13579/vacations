@@ -36,10 +36,10 @@ export class VacationModel {
             name: Joi.string().required(),
             size: Joi.number().positive().required(),
             mimetype: Joi.string().valid("image/jpeg", "image/png", "image/webp").required(),
-            data: Joi.any().required(),
-            encoding: Joi.string().valid("base64", "binary").optional()
-        }).optional()
-    });
+            data: Joi.any().required()
+        }).unknown(true).optional()
+    }).unknown(true);
+
 
     public validate(): void {
         const result = VacationModel.validationSchema.validate(this);
