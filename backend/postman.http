@@ -101,3 +101,10 @@ Content-Type: image/jpeg
 --MyBoundary--
 
 ###
+
+POST {{url}}vacations/4/like
+Authorization: Bearer {{token}}
+
+###
+DELETE {{url}}vacations/4/unlike
+Authorization: Bearer {{token}}

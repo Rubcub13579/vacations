@@ -82,6 +82,21 @@ class VacationService {
         return vacation.imageName
     }
 
+    public async likeVacation(userId: number, vacationId: number): Promise<void> {
+        const checkSql = "SELECT * FROM likes WHERE userId = ? AND vacationId = ?";
+        const values = [userId, vacationId];
+        const existing = await dal.execute(checkSql, values);
+        if ((existing as any[]).length > 0) return;
+        const insertSql = "INSERT INTO likes (userId, vacationId) values(?,?)";
+        await dal.execute(insertSql, values);
+    }
+
+    public async unlikeVacation(userId: number, vacationId: number): Promise<void>{
+        const sql = "DELETE FROM likes WHERE userId = ? AND vacationId = ?";
+        const values = [userId, vacationId];
+        await dal.execute(sql, values)
+    }
+
 
 
 

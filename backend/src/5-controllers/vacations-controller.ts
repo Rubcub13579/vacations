@@ -1,10 +1,10 @@
 import express, { NextFunction, Request, Response } from "express";
 import { fileSaver } from "uploaded-file-saver";
+import { cyber } from "../2-utils/cyber";
 import { StatusCode } from "../3-models/enums";
 import { VacationModel } from "../3-models/vacation-model";
 import { vacationService } from "../4-services/vacation-service";
 import { securityMiddleware } from "../6-middleware/security-middleware";
-import { log } from "console";
 
 
 class VacationsController {
@@ -18,6 +18,8 @@ class VacationsController {
         this.router.put("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.updateVacation);
         this.router.delete("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.deleteVacation);
         this.router.get("/api/vacations/images/:imageName", this.getImageFile);
+        this.router.post("/api/vacations/:id/like", securityMiddleware.validate, this.likeVacation);
+        this.router.delete("/api/vacations/:id/unlike", securityMiddleware.validate, this.unlikeVacation);
     }
 
 
@@ -77,6 +79,32 @@ class VacationsController {
             res.sendFile(imagePath)
         }
         catch (err: any) { next(err) }
+    }
+
+    private async likeVacation(req: Request, res: Response, next: NextFunction) {
+        try {
+            const vacationId = +req.params.id;
+            const token = req.headers.authorization?.substring(7);
+            const user = cyber.getUserFromToken(token);
+            const userId = user.id;
+
+            await vacationService.likeVacation(userId, vacationId);
+
+            res.status(StatusCode.Created).json("like")
+        }
+        catch (err: any) { next(err) }
+    }
+
+    private async unlikeVacation(req: Request, res: Response, next: NextFunction) {
+        try {
+            const vacationId = +req.params.id;
+            const token = req.headers.authorization?.substring(7);
+            const user = cyber.getUserFromToken(token);
+            const userId = user.id
+            await vacationService.unlikeVacation(userId, vacationId);
+            res.status(StatusCode.NoContend).json("unlike");
+        }
+        catch (err: any) { next(err) };
     }
 
 }

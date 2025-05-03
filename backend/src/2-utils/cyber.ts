@@ -45,12 +45,15 @@ class Cyber {
 
 
     public hash(plainText: string): string {
-
         const hashedText = crypto.createHmac("sha512", appConfig.hashSalt).update(plainText).digest("hex");
-
         return hashedText
-
     }
+
+    public getUserFromToken(token: string): UserModel {
+        const payload = jwt.verify(token, "TheAmazingClassOf4578-111") as { user: UserModel };
+        return payload.user;
+    }
+    
 
 }
 
