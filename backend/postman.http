@@ -13,7 +13,7 @@ GET {{url}}vacations/images/e4910ad4-4d2d-48fc-a628-91ff07268e09.jpg
 
 ### Delete 
 
-DELETE  {{url}}vacations/
+DELETE  {{url}}vacations/16
 Authorization: Bearer {{token}}
 
 ### Login
@@ -22,7 +22,7 @@ POST {{url}}login
 Content-Type: application/json
 
 {
-    "email": "bart@gmail.com",
+    "email": "lisa@gmail.com",
     "password": "1234"
 }
 

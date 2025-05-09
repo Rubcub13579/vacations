@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 images
+postman.http
 dist
 dist-ssr
 *.local
