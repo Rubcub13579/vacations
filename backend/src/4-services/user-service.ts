@@ -31,7 +31,6 @@ class UserService {
 
         credentials.password = cyber.hash(credentials.password);
 
-
         const sql = "select * from users where email = ? and password = ?";
         const values = [credentials.email, credentials.password];
 

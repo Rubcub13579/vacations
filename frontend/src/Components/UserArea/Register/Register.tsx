@@ -1,0 +1,47 @@
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { UserModel } from "../../../Models/UserModel";
+import { userService } from "../../../Services/UserService";
+import { notify } from "../../../Utils/Notify";
+import "./Register.css";
+
+export function Register(): JSX.Element {
+
+    const navigate = useNavigate();
+    const { register, handleSubmit } = useForm<UserModel>()
+
+    const send = async (user: UserModel) => {
+        try {
+            await userService.register(user);
+            notify.success("Welcome " + user.firstName);
+            navigate("/home");
+        }
+        catch (err: any) {
+            notify.error(err)
+        }
+    }
+
+    return (
+        <div className="Register">
+
+            <form onSubmit={handleSubmit(send)}>
+
+                <label>First Name: </label>
+                <input type="text" {...register("firstName")} />
+
+                <label>Last Name: </label>
+                <input type="text" {...register("lastName")} />
+
+                <label>Password: </label>
+                <input type="password" {...register("password")} />
+
+                <label>Email: </label>
+                <input type="email" {...register("email")} />
+
+                <button>Register</button>
+
+            </form>
+
+        </div>
+    );
+}

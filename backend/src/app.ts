@@ -1,7 +1,8 @@
+import cors from "cors";
 import express from "express";
 import fileUpload from "express-fileupload";
+import path from "path";
 import requestIp from "request-ip";
-import path from "path"
 import { fileSaver } from "uploaded-file-saver";
 import { appConfig } from "./2-utils/app-config";
 import { userController } from "./5-controllers/user-controller";
@@ -16,8 +17,9 @@ class App {
 
     public start(): void {
 
+        this.server.use(cors())
         //Request body creating
-        this.server.use(express.json({limit: "10mb"}));
+        this.server.use(express.json({ limit: "10mb" }));
 
         //
         this.server.use(fileUpload({
