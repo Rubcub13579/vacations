@@ -43,3 +43,7 @@ form>button {
 form>button:hover {
     background-color: #0056b3;
 }
+
+form>label{
+    /* change the form label idk a little right or left whatever */
+}

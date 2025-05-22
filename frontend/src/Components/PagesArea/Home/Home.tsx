@@ -5,6 +5,8 @@ export function Home(): JSX.Element {
         <div className="Home">
 
 
+            home
+
         </div>
     );
 }

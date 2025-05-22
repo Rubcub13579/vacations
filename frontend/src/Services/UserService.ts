@@ -5,15 +5,19 @@ import { store } from "../redux/Store";
 import axios from "axios";
 import { appConfig } from "../Utils/AppConfig";
 import { CredentialsModel } from "../Models/CredentialsModel";
+import { jwtUtils } from "../Utils/JwtUtils";
 
 
 class UserService {
 
     public constructor() {
-
+        
         const token = localStorage.getItem("token");
-        if (!token) return;
-
+        if (!token || jwtUtils.isTokenExpired(token)){
+            localStorage.removeItem("token")
+            return;
+        } 
+            
         const userContainer = jwtDecode<{ user: UserModel }>(token);
         const dbUser = userContainer.user;
 
@@ -45,7 +49,6 @@ class UserService {
 
         const userContainer = jwtDecode<{ user: UserModel }>(token);
         const dbUser = userContainer.user;
-        console.log(dbUser);
 
         const action = userSlice.actions.initUser(dbUser);
         store.dispatch(action);

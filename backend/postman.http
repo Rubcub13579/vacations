@@ -102,9 +102,9 @@ Content-Type: image/jpeg
 
 ###
 
-POST {{url}}vacations/4/like
+POST {{url}}vacations/like/4
 Authorization: Bearer {{token}}
 
 ###
-DELETE {{url}}vacations/4/unlike
+DELETE {{url}}vacations/unlike/4
 Authorization: Bearer {{token}}
