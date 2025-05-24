@@ -1,3 +1,223 @@
 .Header {
-	
+    position: relative;
+    padding: 60px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 400% 400%;
+    animation: gradientFlow 8s ease-in-out infinite;
+    overflow: hidden;
+    margin-bottom: 40px;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3),
+        0 4px 16px rgba(118, 75, 162, 0.2);
+}
+
+.Header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.Header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(79, 70, 229, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    animation: floatingOrbs 12s ease-in-out infinite;
+}
+
+.Header h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(135deg,
+            #ffffff 0%,
+            #f8fafc 25%,
+            #ffffff 50%,
+            #e2e8f0 75%,
+            #ffffff 100%);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    position: relative;
+    z-index: 2;
+    animation: textShimmer 6s ease-in-out infinite;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.Header h1::before {
+    content: 'Find Vacation';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0.1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: -1;
+    filter: blur(2px);
+    transform: translate(2px, 2px);
+}
+
+.Header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.8),
+            transparent);
+    border-radius: 2px;
+    animation: underlineGlow 4s ease-in-out infinite;
+}
+
+@keyframes gradientFlow {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    50% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes textShimmer {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes floatingOrbs {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.7;
+    }
+
+    33% {
+        transform: translate(30px, -20px) rotate(120deg);
+        opacity: 0.9;
+    }
+
+    66% {
+        transform: translate(-20px, 10px) rotate(240deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes underlineGlow {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1.2);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .Header {
+        padding: 40px 20px;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .Header h1 {
+        font-size: 2.5rem;
+        letter-spacing: -0.01em;
+    }
+
+    .Header h1::after {
+        width: 80px;
+        height: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Header {
+        padding: 30px 15px;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .Header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .Header h1::after {
+        width: 60px;
+        height: 2px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .Header {
+        background: linear-gradient(135deg, #4c1d95 0%, #581c87 50%, #4c1d95 100%);
+        box-shadow: 0 8px 32px rgba(76, 29, 149, 0.4),
+            0 4px 16px rgba(88, 28, 135, 0.3);
+    }
+
+    .Header::after {
+        background:
+            radial-gradient(circle at 20% 80%, rgba(167, 85, 255, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.3) 0%, transparent 50%);
+    }
 }

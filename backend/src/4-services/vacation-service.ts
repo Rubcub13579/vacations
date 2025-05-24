@@ -4,12 +4,15 @@ import { VacationModel } from "../3-models/vacation-model";
 import { fileSaver } from "uploaded-file-saver"
 import { ClientError } from "../3-models/client-error";
 import { StatusCode } from "../3-models/enums";
+import { appConfig } from "../2-utils/app-config";
 
 class VacationService {
 
     public async getAllVacations(): Promise<VacationModel[]> {
-        const sql = "select * from vacations";
-        const vacations = await dal.execute(sql) as VacationModel[];
+        const sql = "select id,destination, description, startDate, endDate, price, concat(?, imageName) as imageUrl from vacations";
+        const values = [appConfig.imagesUrl]
+
+        const vacations = await dal.execute(sql, values) as VacationModel[];
         return vacations;
     }
 
@@ -91,12 +94,26 @@ class VacationService {
         await dal.execute(insertSql, values);
     }
 
-    public async unlikeVacation(userId: number, vacationId: number): Promise<void>{
+    public async unlikeVacation(userId: number, vacationId: number): Promise<void> {
         const sql = "DELETE FROM likes WHERE userId = ? AND vacationId = ?";
         const values = [userId, vacationId];
         await dal.execute(sql, values)
     }
 
+    public async getVacationLikes(vacationId: number, userId: number): Promise<{ likesCount: number, isLikedByUser: boolean }> {
+        const sql = `
+            SELECT
+                (SELECT COUNT(*) FROM likes WHERE vacationId = ?) AS likesCount,
+                EXISTS(SELECT * FROM likes WHERE vacationId = ? AND userId = ?) AS isLikedByUser
+        `;
+        const result = await dal.execute(sql, [vacationId, vacationId, userId]);
+        return {
+            likesCount: result[0].likesCount,
+            isLikedByUser: result[0].isLikedByUser === 1
+        };
+    }
+    
+    
 
 
 

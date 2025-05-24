@@ -54,13 +54,20 @@ class VacationService {
 
     public async like(id: number): Promise<void> {
         const headers = { "Content-Type": "multipart/form-data" };
-        await axios.post(appConfig.VacationsUrl + id + "/like", { headers })
+        await axios.post(appConfig.VacationsUrl + "like/" + id, null, { headers });
     }
 
     public async unlike(id: number): Promise<void> {
         const headers = { "Content-Type": "multipart/form-data" };
-        await axios.delete(appConfig.VacationsUrl + id + "/unlike", { headers })
+        await axios.delete(appConfig.VacationsUrl + "unlike/" + id, { headers });
     }
+
+    public async showLikes(id: number): Promise<{ likesCount: number, isLikedByUser: boolean }> {
+        const response = await axios.get(appConfig.VacationsUrl + "likes/" + id);
+        const dbLikes = response.data;
+        return dbLikes
+    }
+
 
 }
 

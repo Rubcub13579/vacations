@@ -20,6 +20,7 @@ class VacationsController {
         this.router.get("/api/vacations/images/:imageName", this.getImageFile);
         this.router.post("/api/vacations/like/:id", securityMiddleware.validate, this.likeVacation);
         this.router.delete("/api/vacations/unlike/:id", securityMiddleware.validate, this.unlikeVacation);
+        this.router.get("/api/vacations/likes/:id", securityMiddleware.validate, this.showVacationLike);
     }
 
 
@@ -66,7 +67,7 @@ class VacationsController {
         try {
             const id = +req.params.id;
             await vacationService.deleteVacation(id);
-            res.status(StatusCode.NoContend).json()
+            res.status(StatusCode.NoContent).json()
 
         }
         catch (err: any) { next(err) }
@@ -102,10 +103,24 @@ class VacationsController {
             const user = cyber.getUserFromToken(token);
             const userId = user.id
             await vacationService.unlikeVacation(userId, vacationId);
-            res.status(StatusCode.NoContend).json("unlike");
+            res.status(StatusCode.NoContent).json("unlike");
         }
         catch (err: any) { next(err) };
     }
+
+    private async showVacationLike(req: Request, res: Response, next: NextFunction) {
+        try {
+            const vacationId = +req.params.id;
+            const token = req.headers.authorization?.substring(7);
+            const user = cyber.getUserFromToken(token);
+            const userId = user.id;
+
+            const likes = await vacationService.getVacationLikes(vacationId, userId);
+            res.json(likes);
+        }
+        catch (err: any) { next(err); }
+    }
+    
 
 }
 

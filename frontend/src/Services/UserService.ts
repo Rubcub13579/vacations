@@ -11,13 +11,13 @@ import { jwtUtils } from "../Utils/JwtUtils";
 class UserService {
 
     public constructor() {
-        
+
         const token = localStorage.getItem("token");
-        if (!token || jwtUtils.isTokenExpired(token)){
+        if (!token || jwtUtils.isTokenExpired(token)) {
             localStorage.removeItem("token")
             return;
-        } 
-            
+        }
+
         const userContainer = jwtDecode<{ user: UserModel }>(token);
         const dbUser = userContainer.user;
 
@@ -57,7 +57,7 @@ class UserService {
 
     }
 
-    public logout():void{
+    public logout(): void {
 
         const action = userSlice.actions.logoutUser();
         store.dispatch(action);

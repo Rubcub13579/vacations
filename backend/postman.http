@@ -108,3 +108,8 @@ Authorization: Bearer {{token}}
 ###
 DELETE {{url}}vacations/unlike/4
 Authorization: Bearer {{token}}
+
+###
+
+GET {{url}}vacations/likes/4
+Authorization: Bearer {{token}}

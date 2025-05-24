@@ -1,30 +1,187 @@
 .UserMenu {
-    position: absolute;
-    right: 10px;
-    top: 10px;
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 0.9em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
 }
 
-.UserMenu a {
-    background-color: #e0ffe0;
-    /* Light green to highlight user links */
-    padding: 4px 6px;
-    border-radius: 4px;
-    color: #333;
-    text-decoration: none;
+.UserMenu>div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.UserMenu a:hover {
-    color: #007BFF;
-    background-color: #ccfccc;
+.UserMenu>div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.UserMenu>div:hover::before {
+    left: 100%;
+}
+
+.UserMenu>div:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2),
+        0 2px 6px rgba(118, 75, 162, 0.1);
 }
 
 .UserMenu span {
-    background-color: #fffacd;
-    /* Light yellow for span text */
-    padding: 2px 6px;
-    border-radius: 4px;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.UserMenu a {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid transparent;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.UserMenu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.UserMenu a:hover::before {
+    left: 0;
+}
+
+.UserMenu a:hover {
+    color: white;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3),
+        0 2px 6px rgba(118, 75, 162, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.UserMenu a:active {
+    transform: translateY(0) scale(1.02);
+    transition: transform 0.1s ease;
+}
+
+/* Special styling for logout link */
+.UserMenu a[href="/home"] {
+    background: linear-gradient(135deg, rgba(220, 38, 127, 0.1), rgba(239, 68, 68, 0.1));
+    border-color: rgba(220, 38, 127, 0.2);
+}
+
+.UserMenu a[href="/home"]::before {
+    background: linear-gradient(135deg, #dc2626 0%, #dc2778 100%);
+}
+
+.UserMenu a[href="/home"]:hover {
+    box-shadow: 0 4px 12px rgba(220, 38, 127, 0.3),
+        0 2px 6px rgba(239, 68, 68, 0.2);
+}
+
+/* Guest state styling */
+.UserMenu div:has(span:first-child:contains("Hello Guest")) {
+    background: linear-gradient(135deg, rgba(156, 163, 175, 0.1), rgba(107, 114, 128, 0.1));
+    border-color: rgba(156, 163, 175, 0.2);
+}
+
+.UserMenu div:has(span:first-child:contains("Hello Guest")) span {
+    background: linear-gradient(135deg, #6b7280, #9ca3af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* User authenticated state */
+.UserMenu div:has(span:not(:contains("Hello Guest"))) {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1));
+    border-color: rgba(34, 197, 94, 0.2);
+}
+
+.UserMenu div:has(span:not(:contains("Hello Guest"))) span {
+    background: linear-gradient(135deg, #10b981, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .UserMenu>div {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 15px;
+    }
+
+    .UserMenu a {
+        padding: 10px 14px;
+        font-size: 12px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .UserMenu span {
+        font-size: 13px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+}
+
+/* Animation for state changes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.UserMenu>div {
+    animation: fadeIn 0.4s ease-out;
 }

@@ -8,7 +8,6 @@ export function Layout(): JSX.Element {
         <div className="Layout">
 
             <aside><Menu /></aside>
-            <hr />
             <header><Header /></header>
             <main><Routing /></main>
 

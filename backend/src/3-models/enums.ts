@@ -2,7 +2,7 @@ export enum StatusCode {
 
     Ok = 200,
     Created = 201,
-    NoContend = 204,
+    NoContent = 204,
     BadRequest = 400,
     Unauthorized = 401,
     Forbidden = 403,

@@ -2,48 +2,146 @@ html,
 body,
 #root {
     text-align: center;
+    background: linear-gradient(135deg, #b2bce7 0%, #b695d6 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 form {
-    width: 300px;
-    margin: 40px auto;
-    padding: 20px;
-    border-radius: 12px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    width: 350px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(243, 224, 248, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.8s ease;
+}
+
+form:hover::before {
+    left: 100%;
 }
 
 form>input,
 form>button {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: 2px solid transparent;
+    border-radius: 12px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+form>input {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 form>input:focus,
 form>button:focus {
     outline: none;
-    border-color: #007BFF;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #667eea;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3),
+        0 4px 12px rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 1);
+}
+
+form>input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+form>input:focus::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
 }
 
 form>button {
-    background-color: #007BFF;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+form>button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transition: left 0.4s ease;
+    z-index: 1;
+}
+
+form>button:hover::before {
+    left: 0;
 }
 
 form>button:hover {
-    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4),
+        0 4px 12px rgba(118, 75, 162, 0.3);
 }
 
-form>label{
-    /* change the form label idk a little right or left whatever */
+form>button span {
+    position: relative;
+    z-index: 2;
+}
+
+form>label {
+    display: block;
+    text-align: left;
+    margin-bottom: 12px;
+    margin-left: 6px;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+form>label::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transition: width 0.3s ease;
+}
+
+form>label:hover::after {
+    width: 30px;
 }

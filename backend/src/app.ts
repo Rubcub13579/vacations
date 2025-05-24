@@ -21,7 +21,7 @@ class App {
         //Request body creating
         this.server.use(express.json({ limit: "10mb" }));
 
-        //
+        // file upload
         this.server.use(fileUpload({
             limits: { fileSize: 10 * 1024 * 1024 },
             abortOnLimit: true,
