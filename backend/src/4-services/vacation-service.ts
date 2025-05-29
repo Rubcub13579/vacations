@@ -106,7 +106,9 @@ class VacationService {
                 (SELECT COUNT(*) FROM likes WHERE vacationId = ?) AS likesCount,
                 EXISTS(SELECT * FROM likes WHERE vacationId = ? AND userId = ?) AS isLikedByUser
         `;
-        const result = await dal.execute(sql, [vacationId, vacationId, userId]);
+        const values = [vacationId, vacationId, userId]
+        const result = await dal.execute(sql, values);
+        
         return {
             likesCount: result[0].likesCount,
             isLikedByUser: result[0].isLikedByUser === 1
