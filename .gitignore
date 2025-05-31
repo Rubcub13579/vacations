@@ -7,12 +7,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-images
-postman.http
-dist
-dist-ssr
-*.local
 
 # Editor directories and files
 .vscode/*
@@ -24,3 +18,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+node_modules
+images
+postman.http
+dist
+dist-ssr
+*.local
+tofix.txt

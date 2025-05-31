@@ -27,16 +27,16 @@ export function Register(): JSX.Element {
             <form onSubmit={handleSubmit(send)}>
 
                 <label>First Name: </label>
-                <input type="text" {...register("firstName")} />
+                <input type="text" required {...register("firstName")} />
 
                 <label>Last Name: </label>
-                <input type="text" {...register("lastName")} />
+                <input type="text" required {...register("lastName")} />
 
                 <label>Password: </label>
-                <input type="password" {...register("password")} />
+                <input type="password" required {...register("password")} />
 
                 <label>Email: </label>
-                <input type="email" {...register("email")} />
+                <input type="email" required {...register("email")} />
 
                 <button>Register</button>
 

@@ -6,6 +6,8 @@ import { About } from "../../PagesArea/About/About";
 import { Vacations } from "../../VacationArea/Vacations/Vacations";
 import { Login } from "../../UserArea/Login/Login";
 import { Register } from "../../UserArea/Register/Register";
+import { EditVacation } from "../../VacationArea/EditVacation/EditVacation";
+import { AddVacation } from "../../VacationArea/AddVacation/AddVacation";
 
 export function Routing(): JSX.Element {
     return (
@@ -14,6 +16,8 @@ export function Routing(): JSX.Element {
                 <Route path="/" element={<Navigate to="/home" />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/vacations" element={<Vacations/>} />
+                <Route path="/edit-vacation/:vacationId" element={<EditVacation/>} />
+                <Route path="/add-vacation" element={<AddVacation/>} />
                 <Route path="/about" element={<About />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />

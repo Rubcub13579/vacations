@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
+import { FaEdit, FaHeart, FaRegHeart, FaTrash } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import { UserModel } from "../../../Models/UserModel";
 import { VacationModel } from "../../../Models/VacationModel";
 import { vacationService } from "../../../Services/VacationService";
 import "./VacationCard.css";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 type VacationCardProps = {
     vacation: VacationModel;
     user: UserModel | null;
+    deleteMe: (vacationId: number) => void
 };
 
 export function VacationCard(props: VacationCardProps): JSX.Element {
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState<boolean>(false);
     const [likesCount, setLikesCount] = useState(0);
-
 
     useEffect(() => {
         async function fetchLikeStatus() {
@@ -29,7 +30,7 @@ export function VacationCard(props: VacationCardProps): JSX.Element {
         }
 
         fetchLikeStatus();
-    }, [props.vacation.id, props.user]);
+    }, []);
 
     async function toggleLike(): Promise<void> {
         try {
@@ -48,18 +49,37 @@ export function VacationCard(props: VacationCardProps): JSX.Element {
         }
     }
 
+    function deleteTestName():void{
+        const id = props.vacation.id;
+        props.deleteMe(id)
+    }
+
 
     return (
         <div className="VacationCard">
             <div className="card-content">
-                <h3>{props.vacation.destination}</h3>
+                <div className="card-header">
+                    <h3>{props.vacation.destination}</h3>
+                    {props.user?.roleId === 1 && (
+                        <div className="button-group">
+                            <NavLink to={"/edit-vacation/" + props.vacation.id} className="edit-button">
+                                <FaEdit className="edit-icon" />
+                                Edit
+                            </NavLink>
+                            <button onClick={deleteTestName} className="delete-button">
+                                <FaTrash className="delete-icon" />
+                                Delete
+                            </button>
+                        </div>
+                    )}
+                </div>
+
                 <p>{props.vacation.description}</p>
                 <p>Price: ${props.vacation.price}</p>
                 <span>
-                    {new Date(props.vacation.startDate).toLocaleDateString()} -{" "}
-                    {new Date(props.vacation.endDate).toLocaleDateString()}
+                    {new Date(props.vacation.startDate).toLocaleDateString("he-IL")} -{" "}
+                    {new Date(props.vacation.endDate).toLocaleDateString("he-IL")}
                 </span>
-
 
                 {props.user?.roleId === 2 && (
                     <div className="like-section" onClick={toggleLike}>
@@ -68,6 +88,7 @@ export function VacationCard(props: VacationCardProps): JSX.Element {
                     </div>
                 )}
             </div>
+
             <div className="card-image">
                 <img
                     src={props.vacation.imageUrl}

@@ -106,16 +106,16 @@
 }
 
 /* Special styling for logout link */
-.UserMenu a[href="/home"] {
+.UserMenu a[href="/"] {
     background: linear-gradient(135deg, rgba(220, 38, 127, 0.1), rgba(239, 68, 68, 0.1));
     border-color: rgba(220, 38, 127, 0.2);
 }
 
-.UserMenu a[href="/home"]::before {
+.UserMenu a[href="/"]::before {
     background: linear-gradient(135deg, #dc2626 0%, #dc2778 100%);
 }
 
-.UserMenu a[href="/home"]:hover {
+.UserMenu a[href="/"]:hover {
     box-shadow: 0 4px 12px rgba(220, 38, 127, 0.3),
         0 2px 6px rgba(239, 68, 68, 0.2);
 }

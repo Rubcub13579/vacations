@@ -29,10 +29,10 @@ export function Login(): JSX.Element {
             <form onSubmit={handleSubmit(send)}>
 
                 <label>Email: </label>
-                <input type="email" {...register("email")} />
+                <input type="email" required placeholder="yourmail@mail.com" {...register("email")} />
 
                 <label>Password: </label>
-                <input type="password" {...register("password")} />
+                <input type="password" required placeholder="123qweasd" {...register("password")} />
 
                 <button>Login</button>
 

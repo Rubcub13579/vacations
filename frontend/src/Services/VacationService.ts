@@ -19,6 +19,16 @@ class VacationService {
 
         return vacations
     }
+    public async getOneVacation(id: number): Promise<VacationModel> {
+
+        const vacation = store.getState().vacations.find(v => v.id === id);
+        if (vacation) return vacation
+
+        const response = await axios.get<VacationModel>(appConfig.VacationsUrl + id);
+        const dbVacation = response.data
+
+        return dbVacation
+    }
 
     public async addVacation(vacation: VacationModel): Promise<void> {
 
