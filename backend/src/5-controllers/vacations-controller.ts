@@ -19,8 +19,8 @@ class VacationsController {
         this.router.delete("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.deleteVacation);
         this.router.get("/api/vacations/images/:imageName", this.getImageFile);
         this.router.post("/api/vacations/like/:id", securityMiddleware.validate, this.likeVacation);
-        this.router.delete("/api/vacations/unlike/:id", securityMiddleware.validate, this.unlikeVacation);
-        this.router.get("/api/vacations/likes/:id", securityMiddleware.validate, this.showVacationLike);
+        this.router.delete("/api/vacations/like/:id", securityMiddleware.validate, this.unlikeVacation);
+        this.router.get("/api/vacations/like/:id", securityMiddleware.validate, this.showVacationLike);
     }
 
 
