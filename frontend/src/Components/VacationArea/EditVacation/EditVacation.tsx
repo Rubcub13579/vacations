@@ -23,7 +23,7 @@ export function EditVacation(): JSX.Element {
         vacationService.getOneVacation(id)
             .then(vacation => {
                 console.log(vacation.imageUrl);
-                
+                // fix
                 setValue("destination", vacation.destination)
                 setValue("description", vacation.description)
                 setValue("startDate", toInputDateFormat(vacation.startDate))

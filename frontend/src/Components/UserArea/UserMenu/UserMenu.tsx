@@ -21,8 +21,8 @@ export function UserMenu(): JSX.Element {
 
             {!user && <div>
                 <span>Hello Guest</span>
-                <NavLink to={"/register"}>Register</NavLink>
-                <NavLink to={"/login"}>Login</NavLink>
+                <NavLink to="/register">Register</NavLink>
+                <NavLink to="/login">Login</NavLink>
             </div>}
 
             {user && <div>

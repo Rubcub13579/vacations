@@ -5,6 +5,7 @@ import { CredentialsModel } from "../../../Models/CredentialsModel";
 import { notify } from "../../../Utils/Notify";
 import { userService } from "../../../Services/UserService";
 import { store } from "../../../redux/Store";
+import { NavLink } from "react-router-dom";
 
 export function Login(): JSX.Element {
 
@@ -16,7 +17,7 @@ export function Login(): JSX.Element {
         try {
             await userService.login(credential);
             notify.success("Welcome Back " + store.getState().user.firstName);
-            navigate("/home");
+            navigate("/vacations");
         }
         catch (err: any) {
             notify.error(err)
@@ -35,6 +36,8 @@ export function Login(): JSX.Element {
                 <input type="password" required placeholder="123qweasd" {...register("password")} />
 
                 <button>Login</button>
+
+                <NavLink to="/register">Don't have an account?</NavLink>
 
             </form>
 

@@ -14,7 +14,7 @@ export function Register(): JSX.Element {
         try {
             await userService.register(user);
             notify.success("Welcome " + user.firstName);
-            navigate("/home");
+            navigate("/vacations");
         }
         catch (err: any) {
             notify.error(err)

@@ -1,8 +1,6 @@
 front: 
-    agast the login/register button css
-    show likes even if the user is not logged in without letting him to like
-    gap between each vacation
     finish edit-vacation
     edit home page and about page
     choose the right time
     VacationCard change the name for the function
+    pagination

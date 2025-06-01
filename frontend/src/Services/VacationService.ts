@@ -76,7 +76,7 @@ class VacationService {
         const response = await axios.get(appConfig.LikesUrl + id);
         const dbLikes = response.data;
         console.log(dbLikes);
-        
+        // Check
         return dbLikes
     }
 

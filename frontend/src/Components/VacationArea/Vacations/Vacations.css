@@ -1,3 +1,161 @@
 .Vacations {
-	
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+/* Add Vacation button styling */
+.Vacations>a[href="/add-vacation"] {
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    border: 2px solid transparent;
+}
+
+.Vacations>a[href="/add-vacation"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.Vacations>a[href="/add-vacation"]:hover::before {
+    opacity: 1;
+}
+
+.Vacations>a[href="/add-vacation"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4),
+        0 4px 15px rgba(32, 201, 151, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.Vacations>a[href="/add-vacation"] span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Add icon before text */
+.Vacations>a[href="/add-vacation"]::after {
+    content: '+';
+    position: relative;
+    z-index: 2;
+    margin-right: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Not registered section */
+.notRegistered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.notRegistered h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.notRegistered a {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 120px;
+}
+
+.notRegistered a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Vacation cards container */
+.Vacations>*:not(.notRegistered) {
+    margin-bottom: 20px;
+}
+
+/* Empty state when user is logged in but no vacations */
+.Vacations:empty::after {
+    content: "No vacations found";
+    display: block;
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .Vacations {
+        padding: 15px;
+    }
+
+    .notRegistered {
+        padding: 40px 15px;
+        margin-top: 20px;
+    }
+
+    .notRegistered h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .notRegistered a {
+        display: block;
+        margin: 8px auto;
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Vacations {
+        padding: 10px;
+    }
+
+    .notRegistered h2 {
+        font-size: 1.2rem;
+    }
+
+    .notRegistered a {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 }

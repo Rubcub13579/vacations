@@ -20,7 +20,6 @@ lerna-debug.log*
 *.sw?
 
 node_modules
-images
 postman.http
 dist
 dist-ssr
