@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 export function Vacations(): JSX.Element {
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const user = useSelector<AppState, UserModel>(store => store.user)
-
+    
 
     async function deleteVacation(vacationId: number): Promise<void> {
 
@@ -41,7 +41,7 @@ export function Vacations(): JSX.Element {
 
     return (
         <div className="Vacations">
-            {user.roleId === 1 && <NavLink to={"/add-vacation"}>Add Vacation</NavLink>}
+            {user?.roleId === 1 && <NavLink to={"/add-vacation"}>Add Vacation</NavLink>}
             {user ?
                 vacations.map(v => <VacationCard deleteMe={deleteVacation} key={v.id} vacation={v} user={user} />) :
                 <div className="notRegistered">
