@@ -1,6 +1,4 @@
 front: 
-    finish edit-vacation
-    edit home page and about page
-    choose the right time
-    VacationCard change the name for the function
+    edit the home page and about page
+    choose the right time at the edit and add vacation
     pagination

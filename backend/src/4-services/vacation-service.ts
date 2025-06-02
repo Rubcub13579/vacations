@@ -18,8 +18,9 @@ class VacationService {
 
     public async getOneVacation(vacationId: number): Promise<VacationModel> {
 
-        const sql = "select * from vacations where id = ?";
-        const values = [vacationId];
+        const sql = "select *, concat(?, imageName) as imageUrl from vacations where id = ?";
+        const values = [appConfig.imagesUrl,vacationId];
+        
         const vacations = await dal.execute(sql, values) as VacationModel[]
         const vacation = vacations[0];
         return vacation
@@ -45,12 +46,30 @@ class VacationService {
     public async updateVacation(vacation: VacationModel): Promise<VacationModel> {
 
         vacation.validate();
+        let sql: string;
+        let values: any[];
 
-        const imageName = vacation.image ? await fileSaver.add(vacation.image) : null;
+        // If a new image is provided, update everything including the image
+        if (vacation.image) {
+            // Get the old image name to delete it later
+            const oldImageName = await this.getImageName(vacation.id);
 
+            // Save the new image
+            const newImageName = await fileSaver.add(vacation.image);
 
-        const sql = "UPDATE vacations SET destination = ?, description = ?, startDate = ?, endDate = ?, price = ?, imageName = ? WHERE id = ?;";
-        const values = [vacation.destination, vacation.description, vacation.startDate, vacation.endDate, vacation.price, imageName, vacation.id];
+            // Update with new image
+            sql = "UPDATE vacations SET destination = ?, description = ?, startDate = ?, endDate = ?, price = ?, imageName = ? WHERE id = ?";
+            values = [vacation.destination, vacation.description, vacation.startDate, vacation.endDate, vacation.price, newImageName, vacation.id];
+
+            // Delete the old image after successful update
+            if (oldImageName) {
+                await fileSaver.delete(oldImageName);
+            }
+        } else {
+            // No new image provided, update everything except the image
+            sql = "UPDATE vacations SET destination = ?, description = ?, startDate = ?, endDate = ?, price = ? WHERE id = ?";
+            values = [vacation.destination, vacation.description, vacation.startDate, vacation.endDate, vacation.price, vacation.id];
+        }
 
         const info = await dal.execute(sql, values) as OkPacketParams;
 
@@ -58,8 +77,7 @@ class VacationService {
 
         const dbVacation = await this.getOneVacation(vacation.id);
 
-        return dbVacation
-
+        return dbVacation;
     }
 
     public async deleteVacation(id: number): Promise<void> {

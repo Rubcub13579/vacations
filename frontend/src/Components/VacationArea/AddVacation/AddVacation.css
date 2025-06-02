@@ -1,3 +1,93 @@
-.AddVacation {
-	
+/* Not admin message styling */
+.AddVacation p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #e53e3e;
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(229, 62, 62, 0.05));
+    border: 2px solid rgba(229, 62, 62, 0.3);
+    border-radius: 12px;
+    padding: 30px 40px;
+    margin: 60px auto;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(229, 62, 62, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.AddVacation p::before {
+    content: '🔒';
+    display: block;
+    font-size: 48px;
+    margin-bottom: 15px;
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+}
+
+.AddVacation p::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(229, 62, 62, 0.1), transparent);
+    transition: left 0.8s ease;
+}
+
+.AddVacation p:hover::after {
+    left: 100%;
+}
+
+.AddVacation p:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(229, 62, 62, 0.15);
+    border-color: rgba(229, 62, 62, 0.5);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Current image text styling */
+.current-image p {
+    font-size: 14px !important;
+    color: #666 !important;
+    margin: 5px 0 !important;
+    font-weight: 500 !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    text-align: left !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    position: static !important;
+    overflow: visible !important;
+    transition: color 0.3s ease !important;
+}
+
+.current-image p::before,
+.current-image p::after {
+    display: none !important;
+}
+
+.current-image p:hover {
+    color: #4a5568 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
 }

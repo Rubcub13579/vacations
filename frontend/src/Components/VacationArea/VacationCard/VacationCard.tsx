@@ -49,7 +49,7 @@ export function VacationCard(props: VacationCardProps): JSX.Element {
         }
     }
 
-    function deleteTestName():void{
+    function handleDeleteVacation():void{
         const id = props.vacation.id;
         props.deleteMe(id)
     }
@@ -66,7 +66,7 @@ export function VacationCard(props: VacationCardProps): JSX.Element {
                                 <FaEdit className="edit-icon" />
                                 Edit
                             </NavLink>
-                            <button onClick={deleteTestName} className="delete-button">
+                            <button onClick={handleDeleteVacation} className="delete-button">
                                 <FaTrash className="delete-icon" />
                                 Delete
                             </button>

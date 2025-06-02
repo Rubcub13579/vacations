@@ -75,8 +75,6 @@ class VacationService {
     public async showLikes(id: number): Promise<{ likesCount: number, isLikedByUser: boolean }> {
         const response = await axios.get(appConfig.LikesUrl + id);
         const dbLikes = response.data;
-        console.log(dbLikes);
-        // Check
         return dbLikes
     }
 
