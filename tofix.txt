@@ -3,7 +3,7 @@ front:
     choose the right time at the edit and add vacation
     pagination
     fix time in edit page
-
+    in adding vacation if refreshed there is only one vacation
     show all description with read more
 ask: 
     do i need to navigate the unlogged user to login if he trys to get the vacations?
