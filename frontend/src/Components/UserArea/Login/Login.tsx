@@ -33,7 +33,7 @@ export function Login(): JSX.Element {
                 <input type="email" required placeholder="yourmail@mail.com" {...register("email")} />
 
                 <label>Password: </label>
-                <input type="password" required placeholder="123qweasd" {...register("password")} />
+                <input type="password" required minLength={4} placeholder="123qweasd" {...register("password")} />
 
                 <button>Login</button>
 

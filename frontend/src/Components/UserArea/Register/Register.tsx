@@ -33,7 +33,7 @@ export function Register(): JSX.Element {
                 <input type="text" required {...register("lastName")} />
 
                 <label>Password: </label>
-                <input type="password" required {...register("password")} />
+                <input type="password" required minLength={4} {...register("password")} />
 
                 <label>Email: </label>
                 <input type="email" required {...register("email")} />

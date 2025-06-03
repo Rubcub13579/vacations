@@ -23,11 +23,8 @@ class SecurityMiddleware {
     }
 
     public validateAdmin(req: Request, res: Response, next: NextFunction): void{
-
         const header = req.headers.authorization;
-        
         const token = header?.substring(7);
-
         if(!cyber.validationAdmin(token)){
             const err = new ClientError(StatusCode.Forbidden, "You are not admin!");
             next(err);

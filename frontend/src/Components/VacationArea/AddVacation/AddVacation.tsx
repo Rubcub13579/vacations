@@ -13,7 +13,7 @@ export function AddVacation(): JSX.Element {
 
     const { register, handleSubmit } = useForm<VacationModel>();
     const navigate = useNavigate();
-    const user = useSelector<AppState,UserModel>(store => store.user);
+    const user = useSelector<AppState, UserModel>(store => store.user);
     const [previewImageUrl, setPreviewImageUrl] = useState<string>("");
 
 
@@ -60,21 +60,8 @@ export function AddVacation(): JSX.Element {
                 <label>Image</label>
                 {previewImageUrl && (
                     <div className="current-image">
-                        <img
-                            src={previewImageUrl}
-                            alt="Current vacation"
-                            style={{
-                                maxWidth: "200px",
-                                maxHeight: "150px",
-                                objectFit: "cover",
-                                borderRadius: "8px",
-                                marginBottom: "10px",
-                                border: "2px solid rgba(102, 126, 234, 0.3)"
-                            }}
-                        />
-                        <p style={{ fontSize: "14px", color: "#666", margin: "5px 0" }}>
-                            Current image (leave empty to keep this image)
-                        </p>
+                        <img src={previewImageUrl}/>
+                        <p>Current image (leave empty to keep this image)</p>
                     </div>
                 )}
                 <input
@@ -86,8 +73,8 @@ export function AddVacation(): JSX.Element {
 
                 <button type="submit">Add Vacation</button>
 
-            </form>) 
-            : 
+            </form>)
+                :
                 (<p> You are not an admin </p>)
             }
 

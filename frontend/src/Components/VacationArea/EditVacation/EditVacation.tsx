@@ -91,17 +91,8 @@ export function EditVacation(): JSX.Element {
                         <div className="current-image">
                             <img
                                 src={previewImageUrl}
-                                alt="Current vacation"
-                                style={{
-                                    maxWidth: "200px",
-                                    maxHeight: "150px",
-                                    objectFit: "cover",
-                                    borderRadius: "8px",
-                                    marginBottom: "10px",
-                                    border: "2px solid rgba(102, 126, 234, 0.3)"
-                                }}
                             />
-                            <p style={{ fontSize: "14px", color: "#666", margin: "5px 0" }}>
+                            <p>
                                 Current image (leave empty to keep this image)
                             </p>
                         </div>
@@ -114,10 +105,11 @@ export function EditVacation(): JSX.Element {
                     />
 
                     <button type="submit">Update</button>
+                    <button onClick={() => navigate("/vacations")}>Cancel</button>
                 </form>
-            ) 
-            :
-            (<p>You are not an admin</p>)}
+            )
+                :
+                (<p>You are not an admin</p>)}
         </div>
     );
 }

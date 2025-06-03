@@ -91,3 +91,18 @@
     box-shadow: none !important;
     border-color: transparent !important;
 }
+
+.current-image>img {
+    max-width: 200px;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.current-image>p {
+    font-size: 14px;
+    color: "#666";
+    margin: 5px 0
+}

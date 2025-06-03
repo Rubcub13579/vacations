@@ -9,7 +9,7 @@ import { appConfig } from "../2-utils/app-config";
 class VacationService {
 
     public async getAllVacations(): Promise<VacationModel[]> {
-        const sql = "select id,destination, description, startDate, endDate, price, concat(?, imageName) as imageUrl from vacations";
+        const sql = "select id,destination, description, startDate, endDate, price, concat(?, imageName) as imageUrl from vacations order by startDate";
         const values = [appConfig.imagesUrl]
 
         const vacations = await dal.execute(sql, values) as VacationModel[];
@@ -76,8 +76,10 @@ class VacationService {
         if (info.affectedRows === 0) throw new ClientError(StatusCode.NotFound, `id ${vacation.id} not exist`);
 
         const dbVacation = await this.getOneVacation(vacation.id);
+        console.log(dbVacation);
 
         return dbVacation;
+        
     }
 
     public async deleteVacation(id: number): Promise<void> {
