@@ -20,8 +20,13 @@ export function EditVacation(): JSX.Element {
     const [previewImageUrl, setPreviewImageUrl] = useState<string>("")
 
     function toInputDateFormat(dateString: string): string {
-        return new Date(dateString).toISOString().split("T")[0]; // Extract just the date
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = ("0" + (date.getMonth() + 1)).slice(-2);
+        const day = ("0" + date.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
     }
+    
 
     useEffect(() => {
         vacationService.getOneVacation(id)

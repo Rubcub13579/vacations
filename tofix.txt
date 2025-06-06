@@ -1,9 +1,6 @@
 front: 
     edit the home page and about page
     choose the right time at the edit and add vacation
-    pagination
-    fix time in edit page
-    in adding vacation if refreshed there is only one vacation
     show all description with read more
+    adjust like button in vacations
 ask: 
-    do i need to navigate the unlogged user to login if he trys to get the vacations?

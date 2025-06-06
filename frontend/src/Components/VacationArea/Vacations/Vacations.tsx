@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { UserModel } from "../../../Models/UserModel";
 import { VacationModel } from "../../../Models/VacationModel";
 import { vacationService } from "../../../Services/VacationService";
@@ -7,7 +8,6 @@ import { notify } from "../../../Utils/Notify";
 import { AppState } from "../../../redux/Store";
 import { VacationCard } from "../VacationCard/VacationCard";
 import "./Vacations.css";
-import { NavLink } from "react-router-dom";
 const vacationsPerPage = 9
 
 export function Vacations(): JSX.Element {
@@ -47,7 +47,36 @@ export function Vacations(): JSX.Element {
 
     return (
         <div className="Vacations">
+            {user?.roleId === 2 && 
+            <div>
+
+            <label>Sort By: </label>
+            <select>
+                <option value="all">All</option>
+                <option value="likes">Liked Vacations</option>
+                <option value=""></option>
+                <option value=""></option>
+            </select> 
+            </div>
+            }
+            
             {user?.roleId === 1 && <NavLink to={"/add-vacation"}>Add Vacation</NavLink>}
+            <div className="pagination">
+                <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>
+                {[...Array(totalPages)].map((_, i) => {
+                    const page = i + 1;
+                    return (
+                        <button
+                            key={page}
+                            className={page === currentPage ? "active" : ""}
+                            onClick={() => setCurrentPage(page)}
+                        >
+                            {page}
+                        </button>
+                    );
+                })}
+                <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+            </div>
 
             {user ? (
                 <>

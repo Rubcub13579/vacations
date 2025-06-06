@@ -32,6 +32,8 @@ class VacationService {
 
     public async addVacation(vacation: VacationModel): Promise<void> {
 
+        this.getAllVacations()
+
         const headers = { "Content-Type": "multipart/form-data" };
 
         const response = await axios.post<VacationModel>(appConfig.VacationsUrl, vacation, { headers });
