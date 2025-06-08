@@ -11,10 +11,12 @@ type VacationCardProps = {
     user: UserModel | null;
     deleteMe: (vacationId: number) => void
 };
+const descriptionLimit = 150;
 
 export function VacationCard(props: VacationCardProps): JSX.Element {
     const [liked, setLiked] = useState<boolean>(false);
     const [likesCount, setLikesCount] = useState(0);
+    const [showFullDescription, setShowFullDescription] = useState<boolean>(false);
 
     useEffect(() => {
         async function fetchLikeStatus() {
@@ -30,7 +32,7 @@ export function VacationCard(props: VacationCardProps): JSX.Element {
         }
 
         fetchLikeStatus();
-    }, []);
+    }, [props.user?.roleId, props.vacation.id]);
 
     async function toggleLike(): Promise<void> {
         try {
@@ -49,11 +51,20 @@ export function VacationCard(props: VacationCardProps): JSX.Element {
         }
     }
 
-    function handleDeleteVacation():void{
+    function handleDeleteVacation(): void {
         const id = props.vacation.id;
-        props.deleteMe(id)
+        props.deleteMe(id);
     }
 
+    function toggleDescription(): void {
+        setShowFullDescription(!showFullDescription);
+    }
+
+    // Check if description is long enough to need truncation
+    const needsTruncation = props.vacation.description.length > descriptionLimit;
+    const displayDescription = needsTruncation && !showFullDescription
+        ? props.vacation.description.substring(0, descriptionLimit) + "..."
+        : props.vacation.description;
 
     return (
         <div className="VacationCard">
@@ -72,21 +83,35 @@ export function VacationCard(props: VacationCardProps): JSX.Element {
                             </button>
                         </div>
                     )}
+                    {props.user?.roleId === 2 && (
+                        <div className="like-section" onClick={toggleLike}>
+                            {liked ? <FaHeart className="heart filled" /> : <FaRegHeart className="heart" />}
+                            <span>{likesCount}</span>
+                        </div>
+                    )}
                 </div>
 
-                <p>{props.vacation.description}</p>
+                <div className="description-section">
+                    <p>{displayDescription}</p>
+                    {needsTruncation && (
+                        <button
+                            className="show-more-button"
+                            onClick={toggleDescription}
+                            type="button"
+                            aria-expanded={showFullDescription}
+                            aria-label={showFullDescription ? "Show less description" : "Show more description"}
+                        >
+                            {showFullDescription ? "Show less" : "Show more"}
+                        </button>
+                    )}
+                </div>
+
                 <p>Price: ${props.vacation.price}</p>
                 <span>
+                    Date:
                     {new Date(props.vacation.startDate).toLocaleDateString("he-IL")} -{" "}
                     {new Date(props.vacation.endDate).toLocaleDateString("he-IL")}
                 </span>
-
-                {props.user?.roleId === 2 && (
-                    <div className="like-section" onClick={toggleLike}>
-                        {liked ? <FaHeart className="heart filled" /> : <FaRegHeart className="heart" />}
-                        <span>{likesCount}</span>
-                    </div>
-                )}
             </div>
 
             <div className="card-image">

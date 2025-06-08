@@ -1,6 +1,5 @@
 front: 
     edit the home page and about page
-    choose the right time at the edit and add vacation
-    show all description with read more
-    adjust like button in vacations
 ask: 
+    ask about the edit page about picture
+    status report x: country, y: likes. with .csv

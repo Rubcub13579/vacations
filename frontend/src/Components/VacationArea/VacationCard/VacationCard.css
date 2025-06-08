@@ -117,6 +117,56 @@
     flex: 1;
 }
 
+/* Description section styling */
+.description-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.description-section p {
+    margin: 0;
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Show more/less button styling */
+.show-more-button {
+    background: none;
+    border: none;
+    color: #4f46e5;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 0;
+    text-align: left;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    align-self: flex-start;
+    border-radius: 4px;
+}
+
+.show-more-button:hover {
+    color: #3730a3;
+    text-decoration-thickness: 2px;
+    background: rgba(79, 70, 229, 0.05);
+    padding: 4px 8px;
+    margin: 0 -8px;
+}
+
+.show-more-button:active {
+    transform: scale(0.98);
+    background: rgba(79, 70, 229, 0.1);
+}
+
+.show-more-button:focus {
+    outline: 2px solid rgba(79, 70, 229, 0.3);
+    outline-offset: 2px;
+}
+
 .edit-button {
     display: flex;
     align-items: center;
@@ -262,14 +312,6 @@
     font-weight: 400;
 }
 
-.card-content p:first-of-type {
-    flex: 1;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
 .card-content p:nth-of-type(2) {
     font-weight: 600;
     font-size: 1.1rem;
@@ -284,6 +326,7 @@
     font-size: 0.875rem;
     font-weight: 500;
     padding: 8px 12px;
+    margin:  10px ;
     background: rgba(107, 114, 128, 0.1);
     border-radius: 12px;
     border: 1px solid rgba(107, 114, 128, 0.2);
@@ -295,7 +338,6 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-top: 16px;
     padding: 12px 16px;
     border-radius: 50px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(241, 245, 249, 0.6));
@@ -409,6 +451,10 @@
         font-size: 0.8rem;
     }
 
+    .show-more-button {
+        font-size: 0.8rem;
+    }
+
     .VacationCard:hover {
         transform: translateY(-6px) scale(1.01);
     }
@@ -446,6 +492,10 @@
         padding: 6px 12px;
         font-size: 0.75rem;
     }
+
+    .show-more-button {
+        font-size: 0.75rem;
+    }
 }
 
 /* Dark mode support */
@@ -472,8 +522,26 @@
         -webkit-text-fill-color: transparent;
     }
 
-    .card-content p {
+    .card-content p,
+    .description-section p {
         color: #d1d5db;
+    }
+
+    .show-more-button {
+        color: #8b5cf6;
+    }
+
+    .show-more-button:hover {
+        color: #a78bfa;
+        background: rgba(139, 92, 246, 0.1);
+    }
+
+    .show-more-button:active {
+        background: rgba(139, 92, 246, 0.2);
+    }
+
+    .show-more-button:focus {
+        outline: 2px solid rgba(139, 92, 246, 0.4);
     }
 
     .card-content span {

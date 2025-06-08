@@ -8,7 +8,7 @@
 /* Add Vacation button styling */
 .Vacations>a[href="/add-vacation"] {
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: auto;
     padding: 14px 28px;
     background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
     color: white;
@@ -121,6 +121,103 @@
     font-size: 1.2rem;
 }
 
+.sorting-by {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 247, 250, 0.9) 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sorting-by label {
+    font-weight: 600;
+    font-size: 16px;
+    color: #374151;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.vacation-select {
+    position: relative;
+    display: inline-block;
+}
+
+.vacation-select::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #667eea;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.vacation-select:hover::after {
+    color: #bc99dd;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.vacation-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 12px 45px 12px 18px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    min-width: 180px;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.vacation-select select:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4),
+        0 4px 15px rgba(118, 75, 162, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.vacation-select select:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5),
+        0 0 0 3px rgba(102, 126, 234, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.vacation-select select option {
+    background: white;
+    color: #374151;
+    padding: 12px 18px;
+    font-weight: 500;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.vacation-select select option:hover,
+.vacation-select select option:checked {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: rgb(98, 11, 148);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .Vacations {
@@ -143,6 +240,30 @@
         width: 100%;
         max-width: 200px;
     }
+
+    .sorting-by {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .sorting-by label {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .vacation-select select {
+        min-width: 160px;
+        padding: 10px 40px 10px 15px;
+        font-size: 14px;
+    }
+
+    .vacation-select::after {
+        right: 12px;
+        font-size: 10px;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -158,7 +279,23 @@
         padding: 10px 20px;
         font-size: 0.9rem;
     }
+
+    .sorting-by {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .vacation-select select {
+        min-width: 140px;
+        padding: 8px 35px 8px 12px;
+        font-size: 13px;
+    }
+
+    .vacation-select::after {
+        right: 10px;
+    }
 }
+
 .pagination {
     display: flex;
     justify-content: center;

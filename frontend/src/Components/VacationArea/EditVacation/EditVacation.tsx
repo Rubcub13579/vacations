@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { UserModel } from "../../../Models/UserModel";
 import { VacationModel } from "../../../Models/VacationModel";
+import { AppState } from "../../../redux/Store";
 import { vacationService } from "../../../Services/VacationService";
 import { notify } from "../../../Utils/Notify";
 import "./EditVacation.css";
-import { useSelector } from "react-redux";
-import { AppState } from "../../../redux/Store";
-import { UserModel } from "../../../Models/UserModel";
+
+const date = new Date;
+const day = String(date.getDate()).padStart(2, '0');
+const month = String(date.getMonth() + 1).padStart(2, '0');
+const year = String(date.getFullYear());
+
+const currentDate = `${year}-${month}-${day}`
 
 export function EditVacation(): JSX.Element {
 
@@ -26,17 +33,17 @@ export function EditVacation(): JSX.Element {
         const day = ("0" + date.getDate()).slice(-2);
         return `${year}-${month}-${day}`;
     }
-    
+
 
     useEffect(() => {
         vacationService.getOneVacation(id)
             .then(vacation => {
-                setValue("destination", vacation.destination)
-                setValue("description", vacation.description)
-                setValue("startDate", toInputDateFormat(vacation.startDate))
-                setValue("endDate", toInputDateFormat(vacation.endDate))
-                setValue("price", vacation.price)
-                setPreviewImageUrl(vacation.imageUrl)
+                setValue("destination", vacation.destination);
+                setValue("description", vacation.description);
+                setValue("startDate", toInputDateFormat(vacation.startDate));
+                setValue("endDate", toInputDateFormat(vacation.endDate));
+                setValue("price", vacation.price);
+                setPreviewImageUrl(vacation.imageUrl);
             })
             .catch(err => notify.error(err))
     }, [])
@@ -63,7 +70,10 @@ export function EditVacation(): JSX.Element {
                 // so the backend knows not to update the image
                 delete vacation.image;
             }
-
+            if (vacation.startDate > vacation.endDate) {
+                notify.error("Please enter correct date");
+                return;
+            }
             await vacationService.updateVacation(vacation);
             notify.success("Vacation has been updated");
             navigate("/vacations");
@@ -86,7 +96,7 @@ export function EditVacation(): JSX.Element {
                     <input type="date" required {...register("startDate")} />
 
                     <label>End Of Vacation</label>
-                    <input type="date" required {...register("endDate")} />
+                    <input type="date" min={currentDate} required {...register("endDate")} />
 
                     <label>Price</label>
                     <input type="number" required {...register("price")} />
@@ -110,9 +120,8 @@ export function EditVacation(): JSX.Element {
                     />
 
                     <button type="submit">Update</button>
-                    <button onClick={() => navigate("/vacations")}>Cancel</button>
-                </form>
-            )
+                    <NavLink to="/vacations">Cancel</NavLink>
+                </form>)
                 :
                 (<p>You are not an admin</p>)}
         </div>
