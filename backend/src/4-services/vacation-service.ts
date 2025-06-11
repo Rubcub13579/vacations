@@ -5,6 +5,7 @@ import { fileSaver } from "uploaded-file-saver"
 import { ClientError } from "../3-models/client-error";
 import { StatusCode } from "../3-models/enums";
 import { appConfig } from "../2-utils/app-config";
+import { LikesModel } from "../3-models/like-model";
 
 class VacationService {
 
@@ -19,8 +20,8 @@ class VacationService {
     public async getOneVacation(vacationId: number): Promise<VacationModel> {
 
         const sql = "select *, concat(?, imageName) as imageUrl from vacations where id = ?";
-        const values = [appConfig.imagesUrl,vacationId];
-        
+        const values = [appConfig.imagesUrl, vacationId];
+
         const vacations = await dal.execute(sql, values) as VacationModel[]
         const vacation = vacations[0];
         return vacation
@@ -79,7 +80,7 @@ class VacationService {
         console.log(dbVacation);
 
         return dbVacation;
-        
+
     }
 
     public async deleteVacation(id: number): Promise<void> {
@@ -128,14 +129,24 @@ class VacationService {
         `;
         const values = [vacationId, vacationId, userId]
         const result = await dal.execute(sql, values);
-        
+
         return {
             likesCount: result[0].likesCount,
             isLikedByUser: result[0].isLikedByUser === 1
         };
     }
-    
-    
+
+    public async getAllVacationsLikes(): Promise<LikesModel[]> {
+        const sql = `
+        SELECT v.destination AS vacationName, COUNT(l.userId) AS likes FROM
+        vacations as v INNER JOIN likes as l ON v.id = l.vacationId
+        GROUP BY v.id, v.destination ORDER BY Likes DESC;
+        `;
+        const vacationsLikes = await dal.execute(sql) as LikesModel[];
+        return vacationsLikes
+    }
+
+
 
 
 

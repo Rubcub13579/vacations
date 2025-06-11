@@ -120,6 +120,21 @@
         0 2px 6px rgba(239, 68, 68, 0.2);
 }
 
+/* Special styling for statistics link */
+.UserMenu a[href="/statistics"] {
+    background: linear-gradient(135deg, rgba(129, 99, 185, 0.1), rgba(39, 220, 54, 0.1));
+    border-color: rgba(129, 99, 185, 0.2);
+}
+
+.UserMenu a[href="/statistics"]::before {
+    background: linear-gradient(135deg, #8163b9 0%, #27dc36 100%);
+}
+
+.UserMenu a[href="/statistics"]:hover {
+    box-shadow: 0 4px 12px rgba(129, 99, 185, 0.3),
+        0 2px 6px rgba(39, 220, 54, 0.2);
+}
+
 /* Guest state styling */
 .UserMenu div:has(span:first-child:contains("Hello Guest")) {
     background: linear-gradient(135deg, rgba(156, 163, 175, 0.1), rgba(107, 114, 128, 0.1));

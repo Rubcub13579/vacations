@@ -8,6 +8,7 @@ import { Login } from "../../UserArea/Login/Login";
 import { Register } from "../../UserArea/Register/Register";
 import { EditVacation } from "../../VacationArea/EditVacation/EditVacation";
 import { AddVacation } from "../../VacationArea/AddVacation/AddVacation";
+import { LikesStatistics } from "../../PagesArea/LikesStatistics/LikesStatistics";
 
 export function Routing(): JSX.Element {
     return (
@@ -21,6 +22,7 @@ export function Routing(): JSX.Element {
                 <Route path="/about" element={<About />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/statistics" element={<LikesStatistics />} />
                 <Route path="*" element={<Page404 />} />
             </Routes>
         </div>

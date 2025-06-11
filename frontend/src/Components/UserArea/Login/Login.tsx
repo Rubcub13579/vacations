@@ -37,7 +37,8 @@ export function Login(): JSX.Element {
 
                 <button>Login</button>
 
-                <NavLink to="/register">Don't have an account?</NavLink>
+                <label>Don't have an account?</label>
+                <NavLink to="/register" className="secondary">Create One</NavLink>
 
             </form>
 

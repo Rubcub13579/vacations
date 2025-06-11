@@ -5,7 +5,8 @@
 
 @token = {{createToken.response.body.$}}
 ### Get all 
-GET {{url}}vacations
+GET http://localhost:4000/api/vacations/all-likes/
+Authorization: bearer {{token}}
 
 
 ### GET image 
@@ -22,7 +23,7 @@ POST {{url}}login
 Content-Type: application/json
 
 {
-    "email": "lisa@gmail.com",
+    "email": "bart@gmail.com",
     "password": "1234"
 }
 

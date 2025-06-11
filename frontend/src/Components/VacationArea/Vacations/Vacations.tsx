@@ -5,23 +5,25 @@ import { UserModel } from "../../../Models/UserModel";
 import { VacationModel } from "../../../Models/VacationModel";
 import { vacationService } from "../../../Services/VacationService";
 import { notify } from "../../../Utils/Notify";
+import { vacationsUtils } from "../../../Utils/VacationUtils";
 import { AppState } from "../../../redux/Store";
 import { VacationCard } from "../VacationCard/VacationCard";
 import "./Vacations.css";
+
 const vacationsPerPage = 9
 
 export function Vacations(): JSX.Element {
-    const [vacations, setVacations] = useState<VacationModel[]>([]);
+
     const user = useSelector<AppState, UserModel>(store => store.user);
+    const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [originalVacations, setOriginalVacations] = useState<VacationModel[]>([])
     const [likesMap, setLikesMap] = useState<Record<number, boolean>>({});
 
 
-    const indexOfLastVacation = currentPage * vacationsPerPage;
-    const indexOfFirstVacation = indexOfLastVacation - vacationsPerPage;
-    const currentVacations = vacations.slice(indexOfFirstVacation, indexOfLastVacation);
-    const totalPages = Math.ceil(vacations.length / vacationsPerPage)
+    const currentVacations = vacationsUtils.paginate(vacations, currentPage, vacationsPerPage);
+    const totalPages = vacationsUtils.getTotalPages(vacations.length, vacationsPerPage);
+
 
     async function deleteVacation(vacationId: number): Promise<void> {
 
@@ -67,32 +69,12 @@ export function Vacations(): JSX.Element {
     }, []);
 
 
-
     function sortingVacation(event: React.ChangeEvent<HTMLSelectElement>) {
         const sort = event.target.value;
-        let filteredVacations: VacationModel[] = [];
-
-        const now = new Date();
-
-        if (sort === "likes") {
-            filteredVacations = originalVacations.filter(v => likesMap[v.id]);
-        } else if (sort === "current") {
-            filteredVacations = originalVacations.filter(v => {
-                const start = new Date(v.startDate);
-                const end = new Date(v.endDate);
-                return start <= now && end >= now;
-            });
-        } else if (sort === "future") {
-            filteredVacations = originalVacations.filter(v => new Date(v.startDate) > now);
-        } else {
-            filteredVacations = [...originalVacations];
-        }
-
+        const filteredVacations = vacationsUtils.sortVacations(originalVacations, sort, likesMap);
         setVacations(filteredVacations);
         setCurrentPage(1);
     }
-
-
 
 
     return (

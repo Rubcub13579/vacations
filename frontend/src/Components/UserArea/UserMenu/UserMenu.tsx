@@ -19,13 +19,16 @@ export function UserMenu(): JSX.Element {
     return (
         <div className="UserMenu">
 
+
             {!user && <div>
                 <span>Hello Guest</span>
                 <NavLink to="/register">Register</NavLink>
                 <NavLink to="/login">Login</NavLink>
             </div>}
 
+
             {user && <div>
+                {user?.roleId === 1 && <NavLink to="/statistics">Likes statistics</NavLink>}
                 <span>Hello {user.firstName} {user.lastName} </span>
                 <NavLink to="/" onClick={logOut}>Logout</NavLink>
             </div>}

@@ -3,6 +3,8 @@ import { VacationModel } from "../Models/VacationModel";
 import { appConfig } from "../Utils/AppConfig";
 import { store } from "../redux/Store";
 import { vacationSlice } from "../redux/VacationSlice";
+import { LikesModel } from "../Models/LikesModel";
+import { likesSlice } from "../redux/LikesSlice";
 
 
 class VacationService {
@@ -80,6 +82,14 @@ class VacationService {
         return dbLikes
     }
 
+    public async getAllLikes(): Promise<LikesModel[]> {
+        if(store.getState().likes.length > 0) return store.getState().likes;
+        const response = await axios.get(appConfig.allLikesUrl);
+        const AllLikes = response.data;
+        const action = likesSlice.actions.initLikes(AllLikes);
+        store.dispatch(action)
+        return AllLikes;
+    }
 
 }
 
