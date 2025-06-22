@@ -1,3 +1,83 @@
 .Home {
-	
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(243, 224, 248, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.Home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.8s ease;
+}
+
+.Home:hover::before {
+    left: 100%;
+}
+
+.Home h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4a5568;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.Home h1:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.Home p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #4a5568;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.Home p:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+/* Add some responsive design */
+@media (max-width: 768px) {
+    .Home {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+
+    .Home h1 {
+        font-size: 2rem;
+    }
+
+    .Home p {
+        font-size: 1.1rem;
+    }
 }

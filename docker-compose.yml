@@ -1,0 +1,77 @@
+# docked compose up -d
+# docked compose up -d --build
+# docked compose down
+
+services:
+
+  database-service:
+
+    image: rubcub/database-image:1.0
+
+    build: ./Database
+
+    container_name: database-container
+
+    restart: unless-stopped
+
+    volumes:
+      - vacaytion-volume:/var/lib/mysql
+
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_USER: Hatter
+      MYSQL_PASSWORD: TeaTime
+      MYSQL_DATABASE: vacaytion
+      MYSQL_ROOT_PASSWORD: TeaTime
+
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+
+  backend-service:
+
+    depends_on:
+      database-service:
+        condition: service_healthy
+
+    image: rubcub/backend-image:1.0
+
+    build: ./Backend
+
+    container_name: backend-container
+
+    ports:
+      - 4000:4000
+
+    restart: unless-stopped
+
+    volumes:
+      - image-volume:/app/src/1-assets/images
+
+    environment:
+      MYSQL_HOST: database-service
+      MYSQL_USER: Hatter
+      MYSQL_PASSWORD: TeaTime
+      MYSQL_DATABASE: vacaytion
+
+  frontend-service:
+
+    depends_on:
+      - backend-service
+
+    image: rubcub/frontend-image:1.0
+
+    build: ./Frontend
+
+    container_name: frontend-container
+
+    ports:
+      - 80:3000
+
+    restart: unless-stopped
+
+volumes:
+  vacaytion-volume:
+  image-volume:

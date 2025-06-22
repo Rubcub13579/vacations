@@ -24,7 +24,7 @@ export function UserMenu(): JSX.Element {
                 <span>Hello Guest</span>
                 <NavLink to="/register">Register</NavLink>
                 <NavLink to="/login">Login</NavLink>
-            </div>}
+            </div>}             
 
 
             {user && <div>

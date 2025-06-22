@@ -87,7 +87,7 @@ export function AddVacation(): JSX.Element {
                 
             </form>)
                 :
-                (<p> You are not an admin </p>)
+                (<p> You are not admin! </p>)
             }
 
         </div>

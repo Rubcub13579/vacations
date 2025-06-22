@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `find-vacation` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `find-vacation`;
+CREATE DATABASE  IF NOT EXISTS `vacaytion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `vacaytion`;
 -- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
--- Host: localhost    Database: find-vacation
+-- Host: localhost    Database: vacaytion
 -- ------------------------------------------------------
 -- Server version	9.2.0
 

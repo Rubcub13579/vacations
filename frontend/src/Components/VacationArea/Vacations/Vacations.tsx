@@ -41,7 +41,7 @@ export function Vacations(): JSX.Element {
         }
     }
 
-
+    
     useEffect(() => {
         async function fetchVacationsAndLikes() {
             try {
@@ -76,6 +76,9 @@ export function Vacations(): JSX.Element {
         setCurrentPage(1);
     }
 
+    useEffect(() => {
+        window.scrollTo({ top: 150, behavior: "smooth" });
+    }, [currentPage])
 
     return (
         <div className="Vacations">
@@ -97,7 +100,7 @@ export function Vacations(): JSX.Element {
 
 
             {user ? (
-                <>
+                <div>
 
                     <div className="pagination">
                         <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>
@@ -132,7 +135,7 @@ export function Vacations(): JSX.Element {
                         })}
                         <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
                     </div>
-                </>
+                </div>
             ) : (
                 <div className="notRegistered">
                     <h2>Please login to see vacations</h2>

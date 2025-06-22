@@ -1,9 +1,10 @@
+const baseUrl = "http://localhost:4000/api/"
 class AppConfig {
-	public readonly VacationsUrl = "http://localhost:4000/api/vacations/"
-	public readonly allLikesUrl = "http://localhost:4000/api/all-likes/"
-	public readonly LikesUrl = "http://localhost:4000/api/vacations/like/"
-	public readonly registerUrl = "http://localhost:4000/api/register/"
-	public readonly loginUrl = "http://localhost:4000/api/login/"
+	public readonly VacationsUrl = `${baseUrl}vacations/`
+	public readonly allLikesUrl = `${baseUrl}all-likes/`
+	public readonly LikesUrl = `${baseUrl}vacations/like/`
+	public readonly registerUrl = `${baseUrl}register/`
+	public readonly loginUrl = `${baseUrl}login/`
 }
 
 export const appConfig = new AppConfig();

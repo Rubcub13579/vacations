@@ -5,11 +5,14 @@ import { vacationService } from "../../../Services/VacationService";
 import { notify } from "../../../Utils/Notify";
 import "./LikesStatistics.css";
 import { Tooltip } from "recharts";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../redux/Store";
+import { UserModel } from "../../../Models/UserModel";
 
 
 export function LikesStatistics(): JSX.Element {
 
-
+    const user = useSelector<AppState, UserModel>(store => store.user);
     const [likes, setLikes] = useState<LikesModel[]>([]);
 
     useEffect(() => {
@@ -38,21 +41,28 @@ export function LikesStatistics(): JSX.Element {
 
 
     return (
-        <div className="LikesStatistics">
-            <h2>Vacations Likes Statistics</h2>
-            <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={likes} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="vacationName" />
-                    <YAxis allowDecimals={false} interval={0} tickFormatter={(value) => value} />
-                    <Tooltip />
-                    <Bar dataKey="likes" fill="#8884d8" radius={[8, 8, 0, 0]} />
-                </BarChart>
-            </ResponsiveContainer>
 
-            <button onClick={() => { handleDownload(likes) }}>Download CSV</button>
 
-        </div>
+        <div className="LikesStatistics" >
+            { user?.roleId === 1 ?
+                <div>
+                    <h2>Vacations Likes Statistics</h2>
+                    <ResponsiveContainer width="100%" height={400}>
+                        <BarChart data={likes} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="vacationName" />
+                            <YAxis allowDecimals={false} interval={0} tickFormatter={(value) => value} />
+                            <Tooltip />
+                            <Bar dataKey="likes" fill="#8884d8" radius={[8, 8, 0, 0]} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                    <button onClick={() => { handleDownload(likes) }}>Download CSV</button>
+                </div>
+                :
+                    <p> You are not admin! </p>
+                }
+
+        </div >
 
 
 

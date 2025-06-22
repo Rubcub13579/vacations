@@ -13,13 +13,12 @@ class VacationService {
 
         if (store.getState().vacations.length > 0) return store.getState().vacations;
 
-        const response = await axios.get<VacationModel[]>(appConfig.VacationsUrl);
-        const vacations = response.data
-
+        const {data:vacations} = await axios.get<VacationModel[]>(appConfig.VacationsUrl);
+        
         const action = vacationSlice.actions.initVacation(vacations);
-        store.dispatch(action)
+        store.dispatch(action);
 
-        return vacations
+        return vacations;
     }
     public async getOneVacation(id: number): Promise<VacationModel> {
 

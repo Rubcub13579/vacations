@@ -12,9 +12,9 @@ class VacationsController {
     public readonly router = express.Router();
 
     public constructor() {
-        this.router.get("/api/vacations", this.getAllVacations);
+        this.router.get("/api/vacations/", this.getAllVacations);
         this.router.get("/api/vacations/:id", this.getOneVacation);
-        this.router.post("/api/vacations", securityMiddleware.validate, securityMiddleware.validateAdmin, this.addVacation);
+        this.router.post("/api/vacations/", securityMiddleware.validate, securityMiddleware.validateAdmin, this.addVacation);
         this.router.put("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.updateVacation);
         this.router.delete("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.deleteVacation);
 

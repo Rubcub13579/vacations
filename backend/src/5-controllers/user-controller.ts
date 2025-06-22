@@ -1,8 +1,8 @@
 import express, { NextFunction, Request, Response } from "express";
+import { CredentialsModel } from "../3-models/credential-model";
+import { StatusCode } from "../3-models/enums";
 import { UserModel } from "../3-models/user-Model";
 import { userService } from "../4-services/user-service";
-import { StatusCode } from "../3-models/enums";
-import { CredentialsModel } from "../3-models/credential-model";
 
 
 
@@ -17,7 +17,7 @@ class UserController {
     }
 
 
-    private async register(req: Request, res: Response, next: NextFunction){
+    private async register(req: Request, res: Response, next: NextFunction) {
         try {
             const user = new UserModel(req.body);
             const token = await userService.register(user);
@@ -26,13 +26,13 @@ class UserController {
         catch (err) { next(err) }
     }
 
-    private async login(req: Request, res: Response, next: NextFunction){
+    private async login(req: Request, res: Response, next: NextFunction) {
         try {
             const credentials = new CredentialsModel(req.body);
             const token = await userService.login(credentials);
             res.json(token)
-        } 
-        catch (err) {next(err)}
+        }
+        catch (err) { next(err) }
     }
 }
 
