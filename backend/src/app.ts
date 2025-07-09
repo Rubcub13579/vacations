@@ -13,7 +13,7 @@ import { errorMiddleware } from "./6-middleware/error-middleware";
 class App {
 
 
-    private server = express();
+    public readonly server = express();
 
     public start(): void {
 
@@ -46,5 +46,5 @@ class App {
     }
 }
 
-const app = new App()
+export const app = new App()
 app.start();

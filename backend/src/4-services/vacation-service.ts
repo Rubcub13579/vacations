@@ -143,7 +143,7 @@ class VacationService {
         GROUP BY v.id, v.destination ORDER BY Likes DESC;
         `;
         const vacationsLikes = await dal.execute(sql) as LikesModel[];
-        return vacationsLikes
+        return vacationsLikes;
     }
 
 

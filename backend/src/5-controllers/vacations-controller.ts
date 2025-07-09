@@ -5,6 +5,7 @@ import { StatusCode } from "../3-models/enums";
 import { VacationModel } from "../3-models/vacation-model";
 import { vacationService } from "../4-services/vacation-service";
 import { securityMiddleware } from "../6-middleware/security-middleware";
+import { object } from "joi";
 
 
 class VacationsController {
@@ -12,14 +13,17 @@ class VacationsController {
     public readonly router = express.Router();
 
     public constructor() {
-        this.router.get("/api/vacations/", this.getAllVacations);
-        this.router.get("/api/vacations/:id", this.getOneVacation);
+        //vacations
+        this.router.get("/api/vacations/", securityMiddleware.validate,this.getAllVacations);
+        this.router.get("/api/vacations/:id", securityMiddleware.validate,this.getOneVacation);
         this.router.post("/api/vacations/", securityMiddleware.validate, securityMiddleware.validateAdmin, this.addVacation);
         this.router.put("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.updateVacation);
         this.router.delete("/api/vacations/:id", securityMiddleware.validate, securityMiddleware.validateAdmin, this.deleteVacation);
-
+        
+        //get image
         this.router.get("/api/vacations/images/:imageName", this.getImageFile);
 
+        //likes
         this.router.post("/api/vacations/like/:id", securityMiddleware.validate, this.likeVacation);
         this.router.delete("/api/vacations/like/:id", securityMiddleware.validate, this.unlikeVacation);
         this.router.get("/api/vacations/like/:id", securityMiddleware.validate, this.showVacationLike);

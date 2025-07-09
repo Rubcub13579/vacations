@@ -1,7 +1,0 @@
-front: 
-    testing
-ask: 
-    ask about the edit page about picture
-    ai
-    microservices
-    git

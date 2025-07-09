@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "93d15571-4100-423c-ae87-bde540d00ca7",
-		"name": "vacations",
+		"_postman_id": "970e61e7-d811-418b-bf72-f001c7f447b5",
+		"name": "Vacaytions",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43057965"
 	},
@@ -171,12 +171,7 @@
 							"type": "file",
 							"src": []
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "http://localhost:4000/api/vacations",
@@ -228,13 +223,13 @@
 						},
 						{
 							"key": "image",
-							"value": "",
-							"type": "file"
+							"type": "file",
+							"src": []
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/api/vacations",
+					"raw": "http://localhost:4000/api/vacations/9",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -242,7 +237,8 @@
 					"port": "4000",
 					"path": [
 						"api",
-						"vacations"
+						"vacations",
+						"9"
 					]
 				}
 			},
@@ -254,7 +250,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/api/vacations/17",
+					"raw": "http://localhost:4000/api/vacations/9",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -263,7 +259,116 @@
 					"path": [
 						"api",
 						"vacations",
-						"17"
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get vacation image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/images/e4910ad4-4d2d-48fc-a628-91ff07268e09.jpg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"images",
+						"e4910ad4-4d2d-48fc-a628-91ff07268e09.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like vacation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/like/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"like",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unlike vacation",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/like/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"like",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get vacation likes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/like/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"like",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all likes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/all-likes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"all-likes",
+						""
 					]
 				}
 			},
