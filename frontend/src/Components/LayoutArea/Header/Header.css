@@ -171,7 +171,6 @@
     }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .Header {
         padding: 40px 20px;

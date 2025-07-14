@@ -15,11 +15,9 @@ class Cyber {
         delete user.password;
 
         const payload = { user };
-
         const options: SignOptions = { expiresIn: "3h" };
 
         const token = jwt.sign(payload, "TheAmazingClassOf4578-111", options);
-
         return token;
 
     }

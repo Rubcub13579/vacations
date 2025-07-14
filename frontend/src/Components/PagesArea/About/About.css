@@ -75,7 +75,6 @@
     margin-bottom: 0;
 }
 
-/* Add a subtle animation for paragraphs */
 .About p:nth-child(2) {
     animation-delay: 0.1s;
 }
@@ -88,7 +87,6 @@
     animation-delay: 0.3s;
 }
 
-/* Add some responsive design */
 @media (max-width: 768px) {
     .About {
         margin: 20px;

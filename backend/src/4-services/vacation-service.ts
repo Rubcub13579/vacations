@@ -1,11 +1,11 @@
 import { OkPacketParams } from "mysql2";
+import { fileSaver } from "uploaded-file-saver";
+import { appConfig } from "../2-utils/app-config";
 import { dal } from "../2-utils/dal";
-import { VacationModel } from "../3-models/vacation-model";
-import { fileSaver } from "uploaded-file-saver"
 import { ClientError } from "../3-models/client-error";
 import { StatusCode } from "../3-models/enums";
-import { appConfig } from "../2-utils/app-config";
 import { LikesModel } from "../3-models/like-model";
+import { VacationModel } from "../3-models/vacation-model";
 
 class VacationService {
 
@@ -58,7 +58,6 @@ class VacationService {
             // Save the new image
             const newImageName = await fileSaver.add(vacation.image);
 
-            // Update with new image
             sql = "UPDATE vacations SET destination = ?, description = ?, startDate = ?, endDate = ?, price = ?, imageName = ? WHERE id = ?";
             values = [vacation.destination, vacation.description, vacation.startDate, vacation.endDate, vacation.price, newImageName, vacation.id];
 
@@ -84,16 +83,11 @@ class VacationService {
     }
 
     public async deleteVacation(id: number): Promise<void> {
-
         const oldFileName = await this.getImageName(id);
-
         const sql = "delete from vacations where id = ?";
         const values = [id];
-
         const info = await dal.execute(sql, values) as OkPacketParams;
-
         if (info.affectedRows === 0) throw new ClientError(StatusCode.NotFound, `id ${id} not found`);
-
         await fileSaver.delete(oldFileName);
     }
 
@@ -121,6 +115,7 @@ class VacationService {
         await dal.execute(sql, values)
     }
 
+    // shows user how many likes vacation has and if he liked it 
     public async getVacationLikes(vacationId: number, userId: number): Promise<{ likesCount: number, isLikedByUser: boolean }> {
         const sql = `
             SELECT
@@ -136,11 +131,12 @@ class VacationService {
         };
     }
 
+    // gets array of all vacation names and how many likes it has
     public async getAllVacationsLikes(): Promise<LikesModel[]> {
         const sql = `
         SELECT v.destination AS vacationName, COUNT(l.userId) AS likes FROM
-        vacations as v INNER JOIN likes as l ON v.id = l.vacationId
-        GROUP BY v.id, v.destination ORDER BY Likes DESC;
+        vacations as v LEFT JOIN likes as l ON v.id = l.vacationId
+        GROUP BY v.id, v.destination ;
         `;
         const vacationsLikes = await dal.execute(sql) as LikesModel[];
         return vacationsLikes;

@@ -12,11 +12,7 @@ class JwtUtils {
         catch (err) {
             return true
         }
-
-
     }
-
-
 }
 
 export const jwtUtils = new JwtUtils();

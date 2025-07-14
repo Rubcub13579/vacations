@@ -1,18 +1,17 @@
-import { describe, it } from "mocha";
-import supertest from "supertest";
-import { app } from "../src/app";
-import { VacationModel } from "../src/3-models/vacation-model";
 import { expect } from "chai";
-import fs from "fs"
+import { describe, it } from "mocha";
 import path from "path";
-import fileUpload, { UploadedFile } from "express-fileupload";
+import supertest from "supertest";
 import { StatusCode } from "../src/3-models/enums";
 import { LikesModel } from "../src/3-models/like-model";
+import { VacationModel } from "../src/3-models/vacation-model";
+import { app } from "../src/app";
 
 
 
 describe("Testing VacationController", () => {
 
+    // gets an admin token
 
     let token: string;
 
@@ -66,7 +65,6 @@ describe("Testing VacationController", () => {
     it("should return the amount of likes and boolean if user liked the current vacation", async () => {
         const response = await supertest(app.server).get("/api/vacations/like/6").auth(token, { type: "bearer" })
         const like: LikesModel = response.body;
-        console.log(like);
         expect(like).to.not.be.empty;
         expect(like).to.contains.keys("likesCount", "isLikedByUser");
     });

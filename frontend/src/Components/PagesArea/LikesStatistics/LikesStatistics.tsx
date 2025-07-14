@@ -24,9 +24,9 @@ export function LikesStatistics(): JSX.Element {
 
     function handleDownload(likes: LikesModel[]) {
         let csvContent = "Vacation,Likes\n";
-        for (const item of likes) {
-            const safeName = item.vacationName.replace(/, /g, "-");
-            csvContent += `${safeName},${item.likes}\n`;
+        for (const l of likes) {
+            const safeName = l.vacationName.replace(/, /g, "-");
+            csvContent += `${safeName},${l.likesAmount}\n`;
         }
         const blob = new Blob([csvContent], { type: "text/csv" });
         const url = URL.createObjectURL(blob);
@@ -48,9 +48,9 @@ export function LikesStatistics(): JSX.Element {
                 <div>
                     <h2>Vacations Likes Statistics</h2>
                     <ResponsiveContainer width="100%" height={400}>
-                        <BarChart data={likes} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                        <BarChart data={likes} margin={{ top: 20, right: 30, left: 20, bottom: 130 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="vacationName" />
+                            <XAxis dataKey="vacationName" interval={0} angle={-45} textAnchor="end" />
                             <YAxis allowDecimals={false} interval={0} tickFormatter={(value) => value} />
                             <Tooltip />
                             <Bar dataKey="likes" fill="#8884d8" radius={[8, 8, 0, 0]} />

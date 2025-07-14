@@ -1,4 +1,4 @@
-import Joi from "joi"
+import Joi from "joi";
 import { ClientError } from "./client-error";
 import { StatusCode } from "./enums";
 

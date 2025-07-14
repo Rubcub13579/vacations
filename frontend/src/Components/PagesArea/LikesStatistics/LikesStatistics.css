@@ -15,7 +15,6 @@
     font-weight: 600;
 }
 
-/* Download button styling */
 .LikesStatistics button {
     display: block;
     margin: 30px auto 0;
@@ -48,7 +47,6 @@
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
 }
 
-/* Mobile-first responsive design */
 @media (max-width: 768px) {
     .LikesStatistics {
         padding: 15px;
@@ -61,7 +59,6 @@
         margin-bottom: 20px;
     }
 
-    /* Mobile button styling */
     .LikesStatistics button {
         margin: 20px auto 0;
         padding: 10px 20px;
@@ -71,23 +68,19 @@
     }
 
     .LikesStatistics button:hover {
-        /* Reduce hover effects on mobile for better touch experience */
         transform: none;
     }
 
-    /* Ensure chart container is properly sized on mobile */
     .recharts-responsive-container {
         min-height: 320px !important;
         height: 370px !important;
     }
 
-    /* Chart text styling for mobile readability */
     .recharts-cartesian-axis-tick-value {
         font-size: 11px !important;
         fill: #666 !important;
     }
 
-    /* X-axis labels - rotate for better readability on mobile */
     .recharts-xAxis .recharts-cartesian-axis-tick-value {
         transform: rotate(-45deg);
         transform-origin: bottom center;
@@ -95,7 +88,6 @@
         dominant-baseline: middle;
     }
 
-    /* Fix tspan diagonal positioning issue */
     .recharts-xAxis .recharts-cartesian-axis-tick-value tspan {
         transform: none !important;
         dominant-baseline: inherit !important;
@@ -104,17 +96,14 @@
         dy: 0 !important;
     }
 
-    /* Adjust X-axis positioning */
     .recharts-xAxis {
         overflow: visible;
     }
 
-    /* Give more space for rotated labels */
     .recharts-wrapper .recharts-cartesian-grid-horizontal line:last-child {
         margin-bottom: 20px;
     }
 
-    /* Tooltip styling for mobile */
     .recharts-tooltip-wrapper {
         font-size: 12px !important;
     }
@@ -139,38 +128,32 @@
         margin-bottom: 15px;
     }
 
-    /* Smaller chart height for very small screens */
     .recharts-responsive-container {
         min-height: 300px !important;
         height: 340px !important;
     }
 
-    /* Even smaller text for very small screens */
     .recharts-cartesian-axis-tick-value {
         font-size: 10px !important;
     }
 
-    /* Better spacing for rotated labels on small screens */
     .recharts-xAxis .recharts-cartesian-axis-tick-value {
         transform: rotate(-35deg);
         transform-origin: bottom center;
     }
 
-    /* Fix tspan on very small screens */
     .recharts-xAxis .recharts-cartesian-axis-tick-value tspan {
         transform: none !important;
         dx: 0 !important;
         dy: 0 !important;
     }
 
-    /* Adjust bar chart margins for small screens */
     .recharts-wrapper {
         margin-left: -10px;
         margin-right: -10px;
     }
 }
 
-/* Landscape mobile orientation */
 @media (max-width: 768px) and (orientation: landscape) {
     .recharts-responsive-container {
         min-height: 250px !important;
@@ -178,7 +161,6 @@
     }
 }
 
-/* Ensure bars are visible and properly colored */
 .recharts-bar-rectangle {
     transition: opacity 0.2s ease;
 }
@@ -187,7 +169,6 @@
     opacity: 0.8;
 }
 
-/* Loading state styling (if you want to add a loading indicator) */
 .LikesStatistics.loading {
     display: flex;
     justify-content: center;
@@ -201,7 +182,6 @@
     }
 }
 
-/* Responsive grid layout if you have multiple charts */
 .statistics-container {
     display: grid;
     gap: 20px;
@@ -214,14 +194,12 @@
     }
 }
 
-/* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
     .recharts-bar-rectangle {
         transition: none;
     }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: high) {
     .LikesStatistics {
         border: 2px solid #000;

@@ -1,3 +1,46 @@
 .Page404 {
-	
+    text-align: center;
+    padding: 50px;
+    background-color: #fce4ec;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.Page404 h2 {
+    font-size: 2rem;
+    color: #d81b60;
+    animation: spin 3s linear infinite;
+    margin: 20px 0;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(3deg);
+        color: #ec407a;
+    }
+
+    50% {
+        transform: rotate(-3deg);
+        color: #f06292;
+    }
+
+    75% {
+        transform: rotate(3deg);
+        color: #ba68c8;
+    }
+
+    100% {
+        transform: rotate(0deg);
+        color: #d81b60;
+    }
+}
+
+.Page404 iframe {
+    border: 5px dashed #ab47bc;
+    border-radius: 12px;
+    margin: 20px auto;
+    box-shadow: 0 0 20px rgba(171, 71, 188, 0.6);
 }

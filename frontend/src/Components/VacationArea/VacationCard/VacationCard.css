@@ -95,7 +95,6 @@
     gap: 16px;
 }
 
-/* Button group for edit and delete buttons */
 .button-group {
     display: flex;
     gap: 8px;
@@ -117,7 +116,6 @@
     flex: 1;
 }
 
-/* Description section styling */
 .description-section {
     display: flex;
     flex-direction: column;
@@ -132,7 +130,6 @@
     font-weight: 400;
 }
 
-/* Show more/less button styling */
 .show-more-button {
     background: none;
     border: none;
@@ -230,8 +227,7 @@
     transform: rotate(15deg) scale(1.1);
 }
 
-/* Delete button styling to match edit button */
-.delete-button {
+Delete button styling to match edit button */ .delete-button {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -326,7 +322,7 @@
     font-size: 0.875rem;
     font-weight: 500;
     padding: 8px 12px;
-    margin:  10px ;
+    margin: 10px;
     background: rgba(107, 114, 128, 0.1);
     border-radius: 12px;
     border: 1px solid rgba(107, 114, 128, 0.2);
@@ -408,7 +404,6 @@
     }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .VacationCard {
         min-height: 350px;

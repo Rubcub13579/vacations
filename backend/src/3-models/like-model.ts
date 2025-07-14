@@ -1,4 +1,4 @@
 export class LikesModel {
     public vacationName: string;
-    public likes: number;
+    public likesAmount: number;
 }
